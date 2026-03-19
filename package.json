@@ -1,0 +1,17 @@
+{
+  "name": "openclaw-browser-order-price",
+  "version": "1.0.0",
+  "description": "Batch browser order-price agent with persistent real Chrome session",
+  "main": "scripts/order_price_runner.mjs",
+  "scripts": {
+    "prepare-login": "node scripts/prepare_login_session.mjs",
+    "run-one": "node scripts/order_price_runner.mjs",
+    "run-batch": "node scripts/order_price_runner.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright-core": "^1.58.2"
+  }
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Browser Order Price Agent"
+  short_description: "Open URL, click into checkout, and capture payable price"

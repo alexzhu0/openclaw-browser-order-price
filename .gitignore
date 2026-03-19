@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+evidence/
+state/
+node_modules/
