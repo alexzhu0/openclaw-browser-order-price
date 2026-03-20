@@ -1,0 +1,69 @@
+{
+  "cdp": {
+    "host": "172.24.96.1",
+    "_host_comment": "WSL 里访问 Windows 的地址。",
+    "port": 9223,
+    "_port_comment": "Windows 侧 CDP 代理端口，不是 Chrome 原始 9222。"
+  },
+  "_cdp_comment": "CDP 连接配置。通常不需要改，除非 Windows 宿主机地址或代理端口变了。",
+
+  "input": {
+    "jsonFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/test.json",
+    "_jsonFile_comment": "任务输入 JSON 文件。程序会逐条读取其中的 URL。",
+    "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/testoutput.json",
+    "_outputFile_comment": "跑完后的输出 JSON 文件。",
+    "writeInPlace": false,
+    "_writeInPlace_comment": "true 表示直接写回 jsonFile；false 表示写到 outputFile。",
+    "limit": 5,
+    "_limit_comment": "这次最多跑多少条。0 表示不限制，全量跑。",
+    "offset": 0,
+    "_offset_comment": "从第几条开始跑。0 表示从第一条开始。",
+    "shuffle": false,
+    "_shuffle_comment": "是否先打乱任务顺序再执行。",
+    "batchSize": 0,
+    "_batchSize_comment": "单次批处理上限。0 表示不额外截断。"
+  },
+  "_input_comment": "输入输出配置。你平时最常改的是这一段。",
+
+  "behavior": {
+    "pauseEvery": 3,
+    "_pauseEvery_comment": "每跑多少条暂停一次。0 表示不做批次暂停。",
+    "pauseMinMs": 25000,
+    "_pauseMinMs_comment": "批次暂停的最短时间，单位毫秒。",
+    "pauseMaxMs": 45000,
+    "_pauseMaxMs_comment": "批次暂停的最长时间，单位毫秒。",
+    "minOpenMs": 3000,
+    "_minOpenMs_comment": "打开商品页后随机等待的最短时间，单位毫秒。",
+    "maxOpenMs": 7000,
+    "_maxOpenMs_comment": "打开商品页后随机等待的最长时间，单位毫秒。",
+    "minClickMs": 1200,
+    "_minClickMs_comment": "点击购买前后随机等待的最短时间，单位毫秒。",
+    "maxClickMs": 2600,
+    "_maxClickMs_comment": "点击购买前后随机等待的最长时间，单位毫秒。",
+    "waitAfterOpenMs": 5000,
+    "_waitAfterOpenMs_comment": "如果没有启用随机等待，打开页面后的固定等待时间，单位毫秒。",
+    "waitAfterClickMs": 5000,
+    "_waitAfterClickMs_comment": "如果没有启用随机等待，点击后的固定等待时间，单位毫秒。"
+  },
+  "_behavior_comment": "第二版的“模拟人类操作”主要在这里调。",
+
+  "interaction": {
+    "interactiveLogin": true,
+    "_interactiveLogin_comment": "遇到登录页时是否暂停，等你人工扫码/处理后继续。",
+    "interactiveRisk": true,
+    "_interactiveRisk_comment": "遇到安全验证、验证码、二次验证时是否暂停，等你人工处理后继续。",
+    "verbose": false,
+    "_verbose_comment": "是否输出详细运行日志。排查问题时改成 true。",
+    "debugDump": false,
+    "_debugDump_comment": "是否写出调试 dump。定位 iframe、价格节点、异常页面时改成 true。",
+    "debugDumpDir": "/home/alex/DTAlex/openclaw-browser-order-price/state/debug",
+    "_debugDumpDir_comment": "调试 dump 的输出目录。"
+  },
+  "_interaction_comment": "交互和调试配置。",
+
+  "output": {
+    "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/state/run-state.json",
+    "_stateFile_comment": "程序会把本次运行进度写到这里。"
+  },
+  "_output_comment": "运行状态文件。用来做断点续跑和中断排查。"
+}

@@ -4,3 +4,5 @@ __pycache__/
 evidence/
 state/
 node_modules/
+data/test.json
+data/testoutput*.json
