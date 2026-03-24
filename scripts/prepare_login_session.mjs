@@ -13,11 +13,12 @@ const WINDOWS_PROFILE_DIR = "D:\\DTAlex\\Skills\\price_crawl\\state\\chrome-prof
 const WINDOWS_CHROME = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 
 function parseArgs(argv) {
-  const out = { port: DEFAULT_PORT, url: DEFAULT_URL };
+  const out = { port: DEFAULT_PORT, url: DEFAULT_URL, profileDir: "" };
   for (let i = 2; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === "--port") out.port = Number(argv[++i]);
     else if (arg === "--url") out.url = argv[++i];
+    else if (arg === "--profile-dir") out.profileDir = argv[++i];
   }
   return out;
 }
@@ -31,26 +32,39 @@ function isWsl() {
 }
 
 function launchWindowsChrome({ port, url, profileDir }) {
-  const command = [
+  const killCommand = [
     `$profile='${profileDir}'`,
     `Get-CimInstance Win32_Process -Filter "name='chrome.exe'" | Where-Object { $_.CommandLine -like "*$profile*" } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }`,
-    `Start-Sleep -Seconds 1`,
-    `Start-Process -FilePath '${WINDOWS_CHROME}' -ArgumentList @(`,
-    `'--remote-debugging-port=${port}',`,
-    `'--remote-debugging-address=0.0.0.0',`,
-    `'--user-data-dir=${profileDir}',`,
-    `'--no-first-run',`,
-    `'--no-default-browser-check',`,
-    `'--start-maximized',`,
-    `'${url}'`,
-    `)`,
   ].join("; ");
 
-  const child = spawn("powershell.exe", ["-NoProfile", "-Command", command], {
-    detached: true,
+  const killer = spawn("powershell.exe", ["-NoProfile", "-Command", killCommand], {
     stdio: "ignore",
   });
-  child.unref();
+
+  killer.on("exit", () => {
+    const child = spawn(
+      "cmd.exe",
+      [
+        "/c",
+        "start",
+        "",
+        WINDOWS_CHROME,
+        `--remote-debugging-port=${port}`,
+        "--remote-debugging-address=0.0.0.0",
+        `--user-data-dir=${profileDir}`,
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--new-window",
+        "--start-maximized",
+        url,
+      ],
+      {
+        detached: true,
+        stdio: "ignore",
+      },
+    );
+    child.unref();
+  });
 }
 
 function launchLinuxChrome({ port, url, profileDir }) {
@@ -71,12 +85,12 @@ function launchLinuxChrome({ port, url, profileDir }) {
 }
 
 function main() {
-  const { port, url } = parseArgs(process.argv);
+  const { port, url, profileDir: profileArg } = parseArgs(process.argv);
   ensureDir(STATE_DIR);
   ensureDir(LINUX_PROFILE_DIR);
 
   const useWindowsBrowser = isWsl();
-  const profileDir = useWindowsBrowser ? WINDOWS_PROFILE_DIR : LINUX_PROFILE_DIR;
+  const profileDir = profileArg || (useWindowsBrowser ? WINDOWS_PROFILE_DIR : LINUX_PROFILE_DIR);
   if (useWindowsBrowser) {
     launchWindowsChrome({ port, url, profileDir });
   } else {

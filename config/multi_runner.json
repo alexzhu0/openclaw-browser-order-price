@@ -1,0 +1,48 @@
+{
+  "baseConfigPath": "config/runner.json",
+  "_baseConfigPath_comment": "基础 runner 配置。dispatcher 会在这个配置上为每个账号注入不同 offset/limit/output/state/log。",
+
+  "mergedOutputFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output.json",
+  "_mergedOutputFile_comment": "所有账号跑完后合并出的总结果文件。",
+
+  "workers": [
+    {
+      "name": "accountA",
+      "_name_comment": "账号标识，用于生成独立日志、状态文件和临时配置。",
+      "enabled": true,
+      "generatedConfigPath": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/generated-config1.json",
+      "cdp": {
+        "host": "172.24.96.1",
+        "port": 9223
+      },
+      "input": {
+        "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/data/output1.json"
+      },
+      "output": {
+        "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/run-state1.json"
+      },
+      "interaction": {
+        "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/logs/runner1.log"
+      }
+    },
+    {
+      "name": "accountB",
+      "enabled": true,
+      "generatedConfigPath": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/state/generated-config1.json",
+      "cdp": {
+        "host": "172.24.96.1",
+        "port": 9225
+      },
+      "input": {
+        "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/data/output1.json"
+      },
+      "output": {
+        "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/state/run-state1.json"
+      },
+      "interaction": {
+        "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/logs/runner1.log"
+      }
+    }
+  ],
+  "_workers_comment": "开启多个账号时，dispatcher 会按顺序把同一个 test.json 切成连续批次分给每个 enabled worker。"
+}

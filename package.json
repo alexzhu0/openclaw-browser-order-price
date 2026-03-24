@@ -7,7 +7,9 @@
     "prepare-login": "node scripts/prepare_login_session.mjs",
     "run-one": "node scripts/order_price_runner.mjs --config config/runner.json",
     "run-batch": "node scripts/order_price_runner.mjs --config config/runner.json",
-    "print-config": "node scripts/order_price_runner.mjs --config config/runner.json --print-config"
+    "print-config": "node scripts/order_price_runner.mjs --config config/runner.json --print-config",
+    "run-multi": "node scripts/multi_account_runner.mjs --config config/multi_runner.json",
+    "print-multi-plan": "node scripts/multi_account_runner.mjs --config config/multi_runner.json --print-plan"
   },
   "keywords": [],
   "author": "",

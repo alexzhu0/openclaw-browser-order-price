@@ -10,11 +10,11 @@
   "input": {
     "jsonFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/test.json",
     "_jsonFile_comment": "任务输入 JSON 文件。程序会逐条读取其中的 URL。",
-    "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/testoutput.json",
+    "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/testoutput1.json",
     "_outputFile_comment": "跑完后的输出 JSON 文件。",
     "writeInPlace": false,
     "_writeInPlace_comment": "true 表示直接写回 jsonFile；false 表示写到 outputFile。",
-    "limit": 5,
+    "limit": 0,
     "_limit_comment": "这次最多跑多少条。0 表示不限制，全量跑。",
     "offset": 0,
     "_offset_comment": "从第几条开始跑。0 表示从第一条开始。",
@@ -26,19 +26,19 @@
   "_input_comment": "输入输出配置。你平时最常改的是这一段。",
 
   "behavior": {
-    "pauseEvery": 3,
+    "pauseEvery": 5,
     "_pauseEvery_comment": "每跑多少条暂停一次。0 表示不做批次暂停。",
-    "pauseMinMs": 25000,
+    "pauseMinMs": 45000,
     "_pauseMinMs_comment": "批次暂停的最短时间，单位毫秒。",
-    "pauseMaxMs": 45000,
+    "pauseMaxMs": 90000,
     "_pauseMaxMs_comment": "批次暂停的最长时间，单位毫秒。",
-    "minOpenMs": 3000,
+    "minOpenMs": 7500,
     "_minOpenMs_comment": "打开商品页后随机等待的最短时间，单位毫秒。",
-    "maxOpenMs": 7000,
+    "maxOpenMs": 15000,
     "_maxOpenMs_comment": "打开商品页后随机等待的最长时间，单位毫秒。",
-    "minClickMs": 1200,
+    "minClickMs": 3000,
     "_minClickMs_comment": "点击购买前后随机等待的最短时间，单位毫秒。",
-    "maxClickMs": 2600,
+    "maxClickMs": 6000,
     "_maxClickMs_comment": "点击购买前后随机等待的最长时间，单位毫秒。",
     "waitAfterOpenMs": 5000,
     "_waitAfterOpenMs_comment": "如果没有启用随机等待，打开页面后的固定等待时间，单位毫秒。",
@@ -47,13 +47,23 @@
   },
   "_behavior_comment": "第二版的“模拟人类操作”主要在这里调。",
 
+  "retry": {
+    "checkoutBlockedRetries": 3,
+    "_checkoutBlockedRetries_comment": "点击购买后无法进入结算页时，最多自动重试多少轮。不含第一次主尝试。",
+    "checkoutBlockedIntervalMs": 1800000,
+    "_checkoutBlockedIntervalMs_comment": "每次 checkout_blocked 重试前的等待时间，单位30分钟。"
+  },
+  "_retry_comment": "只针对“点击了购买入口但进不了结算页”的场景。",
+
   "interaction": {
     "interactiveLogin": true,
     "_interactiveLogin_comment": "遇到登录页时是否暂停，等你人工扫码/处理后继续。",
     "interactiveRisk": true,
     "_interactiveRisk_comment": "遇到安全验证、验证码、二次验证时是否暂停，等你人工处理后继续。",
-    "verbose": false,
+    "verbose": true,
     "_verbose_comment": "是否输出详细运行日志。排查问题时改成 true。",
+    "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/state/logs/verbose1.log",
+    "_logFile_comment": "verbose 日志输出文件。留空时，verbose=true 会自动写到 state/logs/runner_时间戳.log。",
     "debugDump": false,
     "_debugDump_comment": "是否写出调试 dump。定位 iframe、价格节点、异常页面时改成 true。",
     "debugDumpDir": "/home/alex/DTAlex/openclaw-browser-order-price/state/debug",
@@ -62,7 +72,7 @@
   "_interaction_comment": "交互和调试配置。",
 
   "output": {
-    "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/state/run-state.json",
+    "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/state/run-state1.json",
     "_stateFile_comment": "程序会把本次运行进度写到这里。"
   },
   "_output_comment": "运行状态文件。用来做断点续跑和中断排查。"

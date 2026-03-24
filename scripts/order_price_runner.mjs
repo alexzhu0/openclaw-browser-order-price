@@ -12,6 +12,7 @@ const EVIDENCE_DIR = path.join(PROJECT_DIR, "evidence");
 const DEFAULT_PORT = 9222;
 const DEFAULT_STATE_FILE = path.join(STATE_DIR, "run-state.json");
 const DEFAULT_DEBUG_DIR = path.join(STATE_DIR, "debug");
+const DEFAULT_LOG_DIR = path.join(STATE_DIR, "logs");
 const DEFAULT_BOOTSTRAP_URL = "https://www.jd.com/";
 const DEFAULT_CONFIG_PATH = path.join(PROJECT_DIR, "config", "runner.json");
 const WINDOWS_PROXY_SCRIPT = "D:\\DTAlex\\Skills\\price_crawl\\windows_cdp_proxy.mjs";
@@ -93,9 +94,12 @@ function defaultOptions() {
     maxOpenMs: 9000,
     minClickMs: 1500,
     maxClickMs: 4000,
+    checkoutBlockedRetries: 0,
+    checkoutBlockedIntervalMs: 0,
     stateFile: DEFAULT_STATE_FILE,
     debugDump: false,
     debugDumpDir: DEFAULT_DEBUG_DIR,
+    logFile: "",
     waitAfterOpenMs: 5000,
     waitAfterClickMs: 5000,
     interactiveLogin: false,
@@ -135,9 +139,12 @@ function parseArgs(argv) {
     else if (arg === "--max-open-ms") out.overrides.maxOpenMs = Number(argv[++i]);
     else if (arg === "--min-click-ms") out.overrides.minClickMs = Number(argv[++i]);
     else if (arg === "--max-click-ms") out.overrides.maxClickMs = Number(argv[++i]);
+    else if (arg === "--checkout-blocked-retries") out.overrides.checkoutBlockedRetries = Number(argv[++i]);
+    else if (arg === "--checkout-blocked-interval-ms") out.overrides.checkoutBlockedIntervalMs = Number(argv[++i]);
     else if (arg === "--state-file") out.overrides.stateFile = argv[++i];
     else if (arg === "--debug-dump") out.overrides.debugDump = true;
     else if (arg === "--debug-dump-dir") out.overrides.debugDumpDir = argv[++i];
+    else if (arg === "--log-file") out.overrides.logFile = argv[++i];
     else if (arg === "--wait-after-open-ms") out.overrides.waitAfterOpenMs = Number(argv[++i]);
     else if (arg === "--wait-after-click-ms") out.overrides.waitAfterClickMs = Number(argv[++i]);
     else if (arg === "--interactive-login") out.overrides.interactiveLogin = true;
@@ -167,6 +174,7 @@ function flattenConfig(raw) {
     ...(normalized.input ?? {}),
     ...(normalized.output ?? {}),
     ...(normalized.behavior ?? {}),
+    ...(normalized.retry ?? {}),
     ...(normalized.interaction ?? {}),
   };
 }
@@ -223,13 +231,41 @@ function buildDebugDumpPath(rawUrl, dir) {
   return path.join(dir, `${slugForUrl(rawUrl)}_${nowStamp()}.json`);
 }
 
+function buildRunLogPath(dir = DEFAULT_LOG_DIR) {
+  ensureDir(dir);
+  return path.join(dir, `runner_${nowStamp()}.log`);
+}
+
 async function sleep(ms) {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function appendLogLine(logFile, line) {
+  if (!logFile) return;
+  ensureDir(path.dirname(logFile));
+  fs.appendFileSync(logFile, `${line}\n`);
+}
+
+function formatLogLine(level, parts) {
+  const rendered = parts
+    .map((part) => {
+      if (typeof part === "string") return part;
+      if (part instanceof Error) return part.message;
+      try {
+        return JSON.stringify(part);
+      } catch {
+        return String(part);
+      }
+    })
+    .join(" ");
+  return `[${new Date().toISOString()}] [${level}] ${rendered}`;
+}
+
 function trace(options, ...parts) {
   if (!options?.verbose) return;
-  console.error("[runner]", ...parts);
+  const line = formatLogLine("runner", parts);
+  console.error(line);
+  appendLogLine(options.logFile, line);
 }
 
 async function runPowershell(command) {
@@ -1156,32 +1192,63 @@ async function runSingle(page, url, options) {
       return markBlockedResult({ ...base, screenshot_path: screenshotPath }, riskState.result.error);
     }
 
-    trace(options, "find_purchase_entry");
-    const purchase = (await findLegacyPurchaseEntry(page)) ?? (await findStrongPurchaseEntry(page)) ?? (await findFirstClickableByText(page, BUY_TEXTS));
-    const bodyText = await getVisibleTextSnippet(page, 5000, 1200);
-    if (!purchase && STOCK_TEXTS.some((text) => bodyText.includes(text))) {
-      await page.screenshot({ path: screenshotPath, fullPage: true });
-      return { ...base, error: "页面显示缺货或售罄，且未发现可下单入口" };
-    }
+    let postPurchase = { kind: "unknown" };
+    const maxPurchaseAttempts = Math.max(1, Number(options.checkoutBlockedRetries || 0) + 1);
 
-    if (!purchase) {
-      await page.screenshot({ path: screenshotPath, fullPage: true });
-      return { ...base, error: "未发现可点击的立即购买/去结算入口" };
-    }
+    for (let attempt = 1; attempt <= maxPurchaseAttempts; attempt += 1) {
+      if (attempt > 1) {
+        const waitMs = Math.max(0, Number(options.checkoutBlockedIntervalMs || 0));
+        trace(options, "checkout_blocked_retry_wait", waitMs, "attempt", attempt);
+        if (waitMs > 0) await sleep(waitMs);
+        trace(options, "checkout_blocked_retry_reload", url, "attempt", attempt);
+        await gotoWithRetry(page, url);
+        await sleep(pickRunDelay(options.minOpenMs, options.maxOpenMs, options.waitAfterOpenMs));
+        await waitForPurchaseAreaReady(page, 15000).catch(() => {});
 
-    base.purchase_entry = purchase.text;
-    trace(options, "purchase_found", purchase.text, purchase.meta?.rect ? JSON.stringify(purchase.meta.rect) : "");
-    trace(options, "click_purchase");
-    if (purchase.legacy) await clickLegacyPurchaseEntry(purchase);
-    else await clickPurchaseEntry(page, purchase, options);
-    trace(options, "wait_purchase_flow");
-    let postPurchase = await waitForPurchaseFlow(page, options);
+        const retryLoginState = await maybeHandleLogin(page, options.interactiveLogin);
+        if (retryLoginState.handled) {
+          await page.screenshot({ path: screenshotPath, fullPage: true });
+          return { ...base, ...retryLoginState.result, screenshot_path: screenshotPath };
+        }
 
-    if (postPurchase.kind === "unknown" && page.url().includes("item.jd.com")) {
-      trace(options, "retry_click_purchase");
+        const retryRiskState = await maybeHandleRisk(page, options.interactiveRisk);
+        if (retryRiskState.handled) {
+          await page.screenshot({ path: screenshotPath, fullPage: true });
+          return markBlockedResult({ ...base, screenshot_path: screenshotPath }, retryRiskState.result.error);
+        }
+      }
+
+      trace(options, "find_purchase_entry", "attempt", attempt);
+      const purchase = (await findLegacyPurchaseEntry(page)) ?? (await findStrongPurchaseEntry(page)) ?? (await findFirstClickableByText(page, BUY_TEXTS));
+      const bodyText = await getVisibleTextSnippet(page, 5000, 1200);
+      if (!purchase && STOCK_TEXTS.some((text) => bodyText.includes(text))) {
+        await page.screenshot({ path: screenshotPath, fullPage: true });
+        return { ...base, error: "页面显示缺货或售罄，且未发现可下单入口" };
+      }
+
+      if (!purchase) {
+        await page.screenshot({ path: screenshotPath, fullPage: true });
+        return { ...base, error: "未发现可点击的立即购买/去结算入口" };
+      }
+
+      base.purchase_entry = purchase.text;
+      trace(options, "purchase_found", purchase.text, purchase.meta?.rect ? JSON.stringify(purchase.meta.rect) : "", "attempt", attempt);
+      trace(options, "click_purchase", "attempt", attempt);
       if (purchase.legacy) await clickLegacyPurchaseEntry(purchase);
       else await clickPurchaseEntry(page, purchase, options);
+      trace(options, "wait_purchase_flow", "attempt", attempt);
       postPurchase = await waitForPurchaseFlow(page, options);
+
+      if (postPurchase.kind === "unknown" && page.url().includes("item.jd.com")) {
+        trace(options, "retry_click_purchase", "attempt", attempt);
+        if (purchase.legacy) await clickLegacyPurchaseEntry(purchase);
+        else await clickPurchaseEntry(page, purchase, options);
+        postPurchase = await waitForPurchaseFlow(page, options);
+      }
+
+      if (!["fallback", "unknown"].includes(postPurchase.kind) || attempt === maxPurchaseAttempts) {
+        break;
+      }
     }
 
     trace(options, "post_purchase_kind", postPurchase.kind || "unknown");
@@ -1196,16 +1263,38 @@ async function runSingle(page, url, options) {
       return markBlockedResult({ ...base, screenshot_path: screenshotPath, purchase_entry: base.purchase_entry }, "点击购买后触发京东安全验证或风控页面");
     }
 
+    if (postPurchase.kind === "fallback") {
+      const dumpPath = await writeDebugDump(page, url, options, "checkout_blocked", {
+        purchase_entry: base.purchase_entry,
+        fallback_price_info: postPurchase.priceInfo ?? null,
+      });
+      await page.screenshot({ path: screenshotPath, fullPage: true });
+      return {
+        ...base,
+        status: "checkout_blocked",
+        purchase_entry: base.purchase_entry,
+        screenshot_path: screenshotPath,
+        debug_dump_path: dumpPath || base.debug_dump_path,
+        error: "点击购买入口后未进入结算页，页面停留在商品页价格态",
+      };
+    }
+
     const isCheckout = postPurchase.kind === "checkout" ? true : await detectCheckoutState(page);
     const priceInfo = postPurchase.priceInfo ?? (isCheckout ? await extractPriceInfo(page) : await extractFallbackPriceInfo(page));
     trace(options, "price_info", priceInfo ? JSON.stringify(priceInfo) : "none", "isCheckout=", isCheckout);
     await page.screenshot({ path: screenshotPath, fullPage: true });
     if (!priceInfo) {
-      const dumpPath = await writeDebugDump(page, url, options, isCheckout ? "checkout_no_price" : "post_click_unknown", {
+      const isBlockedAfterClick = !isCheckout;
+      const dumpPath = await writeDebugDump(page, url, options, isCheckout ? "checkout_no_price" : "checkout_blocked", {
         purchase_entry: base.purchase_entry,
         isCheckout,
       });
-      return { ...base, debug_dump_path: dumpPath || base.debug_dump_path, error: isCheckout ? "已进入结算页，但未能确认应付金额" : "已点击购买入口，但未进入可识别的结算页，且未提取到价格" };
+      return {
+        ...base,
+        status: isBlockedAfterClick ? "checkout_blocked" : base.status,
+        debug_dump_path: dumpPath || base.debug_dump_path,
+        error: isCheckout ? "已进入结算页，但未能确认应付金额" : "点击购买入口后未进入结算页，且未提取到有效价格",
+      };
     }
 
     return { ...base, status: "success", error: "", ...priceInfo };
@@ -1299,6 +1388,10 @@ async function main() {
   ensureDir(STATE_DIR);
   ensureDir(EVIDENCE_DIR);
   if (options.debugDump) ensureDir(options.debugDumpDir);
+  if (options.verbose) {
+    options.logFile = options.logFile || buildRunLogPath();
+    appendLogLine(options.logFile, formatLogLine("runner", ["verbose logging enabled"]));
+  }
 
   if (options.printConfig) {
     console.log(

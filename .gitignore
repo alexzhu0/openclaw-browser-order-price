@@ -6,3 +6,7 @@ state/
 node_modules/
 data/test.json
 data/testoutput*.json
+data/multi_account_output*.json
+account*/data/
+account*/state/
+account*/logs/
