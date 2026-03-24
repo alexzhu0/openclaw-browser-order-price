@@ -1,0 +1,622 @@
+{
+  "status": "completed",
+  "started_at": "2026-03-23T10:37:37.971Z",
+  "updated_at": "2026-03-23T11:42:41.354Z",
+  "processed": 87,
+  "success": 56,
+  "failed": 31,
+  "last_index": 85,
+  "last_url": "https://item.jd.com/100282626606.html",
+  "blocked_reason": "",
+  "results": [
+    {
+      "index": 0,
+      "url": "https://item.jd.com/100098827375.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 0,
+      "url": "https://item.jd.com/100098827375.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 1,
+      "url": "https://item.jd.com/100174519889.html",
+      "status": "success",
+      "error": "",
+      "price": "¥9699.00"
+    },
+    {
+      "index": 2,
+      "url": "https://item.jd.com/100087543382.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 3,
+      "url": "https://item.jd.com/100091011046.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 4,
+      "url": "https://item.jd.com/100226664582.html",
+      "status": "success",
+      "error": "",
+      "price": "¥11099.00"
+    },
+    {
+      "index": 5,
+      "url": "https://item.jd.com/100174888119.html",
+      "status": "success",
+      "error": "",
+      "price": "¥11499.00"
+    },
+    {
+      "index": 6,
+      "url": "https://item.jd.com/100226664586.html",
+      "status": "success",
+      "error": "",
+      "price": "¥10899.00"
+    },
+    {
+      "index": 7,
+      "url": "https://item.jd.com/100218146944.html",
+      "status": "success",
+      "error": "",
+      "price": "¥12699.00"
+    },
+    {
+      "index": 8,
+      "url": "https://item.jd.com/100218146948.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 9,
+      "url": "https://item.jd.com/100205183444.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 10,
+      "url": "https://item.jd.com/100226110098.html",
+      "status": "success",
+      "error": "",
+      "price": "¥8999.00"
+    },
+    {
+      "index": 11,
+      "url": "https://item.jd.com/100226110114.html",
+      "status": "success",
+      "error": "",
+      "price": "¥11099.00"
+    },
+    {
+      "index": 12,
+      "url": "https://item.jd.com/100226110132.html",
+      "status": "success",
+      "error": "",
+      "price": "¥10799.00"
+    },
+    {
+      "index": 13,
+      "url": "https://item.jd.com/100218146966.html",
+      "status": "success",
+      "error": "",
+      "price": "¥12299.00"
+    },
+    {
+      "index": 14,
+      "url": "https://item.jd.com/100169205655.html",
+      "status": "success",
+      "error": "",
+      "price": "¥13299.00"
+    },
+    {
+      "index": 15,
+      "url": "https://item.jd.com/100186215392.html",
+      "status": "success",
+      "error": "",
+      "price": "¥7299.00"
+    },
+    {
+      "index": 16,
+      "url": "https://item.jd.com/100185894090.html",
+      "status": "success",
+      "error": "",
+      "price": "¥7499.00"
+    },
+    {
+      "index": 17,
+      "url": "https://item.jd.com/100109152429.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 18,
+      "url": "https://item.jd.com/100157971225.html",
+      "status": "success",
+      "error": "",
+      "price": "¥6799.00"
+    },
+    {
+      "index": 19,
+      "url": "https://item.jd.com/100241441971.html",
+      "status": "success",
+      "error": "",
+      "price": "¥6299.00"
+    },
+    {
+      "index": 20,
+      "url": "https://item.jd.com/10136774271878.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 21,
+      "url": "https://item.jd.com/100157535335.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 22,
+      "url": "https://item.jd.com/100157971231.html",
+      "status": "success",
+      "error": "",
+      "price": "¥6999.00"
+    },
+    {
+      "index": 23,
+      "url": "https://item.jd.com/100154268235.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 24,
+      "url": "https://item.jd.com/100171614254.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 25,
+      "url": "https://item.jd.com/100171614234.html",
+      "status": "success",
+      "error": "",
+      "price": "¥4299.00"
+    },
+    {
+      "index": 26,
+      "url": "https://item.jd.com/100138199905.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 27,
+      "url": "https://item.jd.com/100171614232.html",
+      "status": "success",
+      "error": "",
+      "price": "¥4499.00"
+    },
+    {
+      "index": 28,
+      "url": "https://item.jd.com/100186215390.html",
+      "status": "success",
+      "error": "",
+      "price": "¥9299.00"
+    },
+    {
+      "index": 29,
+      "url": "https://item.jd.com/100141453386.html",
+      "status": "success",
+      "error": "",
+      "price": "¥8629"
+    },
+    {
+      "index": 30,
+      "url": "https://item.jd.com/100145847621.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 31,
+      "url": "https://item.jd.com/100165851444.html",
+      "status": "success",
+      "error": "",
+      "price": "¥4699"
+    },
+    {
+      "index": 32,
+      "url": "https://item.jd.com/100223758220.html",
+      "status": "success",
+      "error": "",
+      "price": "¥7649.15"
+    },
+    {
+      "index": 33,
+      "url": "https://item.jd.com/100165631515.html",
+      "status": "success",
+      "error": "",
+      "price": "¥8499.15"
+    },
+    {
+      "index": 34,
+      "url": "https://item.jd.com/100222021190.html",
+      "status": "success",
+      "error": "",
+      "price": "¥8244.15"
+    },
+    {
+      "index": 35,
+      "url": "https://item.jd.com/100222021222.html",
+      "status": "success",
+      "error": "",
+      "price": "¥8499.15"
+    },
+    {
+      "index": 36,
+      "url": "https://item.jd.com/100212784820.html",
+      "status": "success",
+      "error": "",
+      "price": "¥11499"
+    },
+    {
+      "index": 37,
+      "url": "https://item.jd.com/100172948815.html",
+      "status": "success",
+      "error": "",
+      "price": "¥7394.15"
+    },
+    {
+      "index": 38,
+      "url": "https://item.jd.com/100212784844.html",
+      "status": "success",
+      "error": "",
+      "price": "¥7904.15"
+    },
+    {
+      "index": 39,
+      "url": "https://item.jd.com/100172948833.html",
+      "status": "success",
+      "error": "",
+      "price": "¥7904.15"
+    },
+    {
+      "index": 40,
+      "url": "https://item.jd.com/100165631499.html",
+      "status": "success",
+      "error": "",
+      "price": "¥8999"
+    },
+    {
+      "index": 41,
+      "url": "https://item.jd.com/100166879203.html",
+      "status": "success",
+      "error": "",
+      "price": "¥11989"
+    },
+    {
+      "index": 42,
+      "url": "https://item.jd.com/100155004255.html",
+      "status": "success",
+      "error": "",
+      "price": "¥5999.00"
+    },
+    {
+      "index": 43,
+      "url": "https://item.jd.com/10071585586035.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 44,
+      "url": "https://item.jd.com/100167406051.html",
+      "status": "success",
+      "error": "",
+      "price": "¥4078.3"
+    },
+    {
+      "index": 45,
+      "url": "https://item.jd.com/100167406053.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 46,
+      "url": "https://item.jd.com/100088612934.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 47,
+      "url": "https://item.jd.com/100167406055.html",
+      "status": "success",
+      "error": "",
+      "price": "¥4758.3"
+    },
+    {
+      "index": 48,
+      "url": "https://item.jd.com/100262061520.html",
+      "status": "success",
+      "error": "",
+      "price": "¥5353.3"
+    },
+    {
+      "index": 49,
+      "url": "https://item.jd.com/10169044581492.html",
+      "status": "success",
+      "error": "",
+      "price": "¥5999"
+    },
+    {
+      "index": 50,
+      "url": "https://item.jd.com/100210750124.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 51,
+      "url": "https://item.jd.com/100164275933.html",
+      "status": "success",
+      "error": "",
+      "price": "¥5948.3"
+    },
+    {
+      "index": 52,
+      "url": "https://item.jd.com/100213107608.html",
+      "status": "success",
+      "error": "",
+      "price": "¥8487"
+    },
+    {
+      "index": 53,
+      "url": "https://item.jd.com/100213107588.html",
+      "status": "success",
+      "error": "",
+      "price": "¥7903.3"
+    },
+    {
+      "index": 54,
+      "url": "https://item.jd.com/100165846395.html",
+      "status": "success",
+      "error": "",
+      "price": "¥8498.3"
+    },
+    {
+      "index": 55,
+      "url": "https://item.jd.com/100165846393.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 56,
+      "url": "https://item.jd.com/100213107592.html",
+      "status": "success",
+      "error": "",
+      "price": "¥6968.3"
+    },
+    {
+      "index": 57,
+      "url": "https://item.jd.com/100165846403.html",
+      "status": "success",
+      "error": "",
+      "price": "¥7733.3"
+    },
+    {
+      "index": 58,
+      "url": "https://item.jd.com/100071851411.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 59,
+      "url": "https://item.jd.com/100167105522.html",
+      "status": "success",
+      "error": "",
+      "price": "¥4389"
+    },
+    {
+      "index": 60,
+      "url": "https://item.jd.com/100135194629.html",
+      "status": "success",
+      "error": "",
+      "price": "¥4689"
+    },
+    {
+      "index": 61,
+      "url": "https://item.jd.com/100166481903.html",
+      "status": "success",
+      "error": "",
+      "price": "¥4389"
+    },
+    {
+      "index": 62,
+      "url": "https://item.jd.com/100179560354.html",
+      "status": "success",
+      "error": "",
+      "price": "¥6288"
+    },
+    {
+      "index": 63,
+      "url": "https://item.jd.com/100179560336.html",
+      "status": "success",
+      "error": "",
+      "price": "¥6388"
+    },
+    {
+      "index": 64,
+      "url": "https://item.jd.com/100229437274.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 65,
+      "url": "https://item.jd.com/100071356599.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 66,
+      "url": "https://item.jd.com/100078277728.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 67,
+      "url": "https://item.jd.com/100229437304.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 68,
+      "url": "https://item.jd.com/100229437302.html",
+      "status": "success",
+      "error": "",
+      "price": "¥4299.00"
+    },
+    {
+      "index": 69,
+      "url": "https://item.jd.com/100110556636.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 70,
+      "url": "https://item.jd.com/100110556632.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 71,
+      "url": "https://item.jd.com/100229437226.html",
+      "status": "success",
+      "error": "",
+      "price": "¥7599.00"
+    },
+    {
+      "index": 72,
+      "url": "https://item.jd.com/10150165831173.html",
+      "status": "success",
+      "error": "",
+      "price": "¥3824.15"
+    },
+    {
+      "index": 73,
+      "url": "https://item.jd.com/10150140838886.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 74,
+      "url": "https://item.jd.com/100160186639.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 75,
+      "url": "https://item.jd.com/100285598552.html",
+      "status": "success",
+      "error": "",
+      "price": "¥4240.65"
+    },
+    {
+      "index": 76,
+      "url": "https://item.jd.com/100285598566.html",
+      "status": "success",
+      "error": "",
+      "price": "¥4239.8"
+    },
+    {
+      "index": 77,
+      "url": "https://item.jd.com/100129564563.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 78,
+      "url": "https://item.jd.com/100149749549.html",
+      "status": "success",
+      "error": "",
+      "price": "¥6298"
+    },
+    {
+      "index": 79,
+      "url": "https://item.jd.com/100200325980.html",
+      "status": "success",
+      "error": "",
+      "price": "¥11999"
+    },
+    {
+      "index": 80,
+      "url": "https://item.jd.com/100173612431.html",
+      "status": "success",
+      "error": "",
+      "price": "¥6289.15"
+    },
+    {
+      "index": 81,
+      "url": "https://item.jd.com/100200325940.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 82,
+      "url": "https://item.jd.com/100193450599.html",
+      "status": "exception",
+      "error": "未发现可点击的立即购买/去结算入口",
+      "price": ""
+    },
+    {
+      "index": 83,
+      "url": "https://item.jd.com/100213780006.html",
+      "status": "exception",
+      "error": "页面显示缺货或售罄，且未发现可下单入口",
+      "price": ""
+    },
+    {
+      "index": 84,
+      "url": "https://item.jd.com/100231000048.html",
+      "status": "success",
+      "error": "",
+      "price": "¥5199.00"
+    },
+    {
+      "index": 85,
+      "url": "https://item.jd.com/100282626606.html",
+      "status": "success",
+      "error": "",
+      "price": "¥3798.00"
+    }
+  ]
+}
