@@ -1,247 +1,144 @@
 # JD Checkout Price Runner
 
-## 项目起源
-
-这个项目最早来自对 OpenClaw 浏览器自动化能力的实际使用。
-
-一开始的思路是直接依赖 OpenClaw 去完成：
-
-- 打开商品页
-- 点击 `立即购买`
-- 进入确认订单页
-- 读取下单价格
-
-但在真实使用过程中，我发现 OpenClaw 这类通用浏览器自动化在京东这种页面上不够稳定，主要问题集中在：
-
-- 同一条任务并不是每次都能稳定点进购买链路
-- 页面结构一复杂，容易在错误节点上点击
-- 进入确认订单页后，价格提取结果不够稳定
-- 批量任务场景下，调试和控制成本偏高
-
-所以这个项目没有继续沿着“通用 Agent 包装层”往前堆，而是把真正有效的部分拆出来，做成一个更直接、更可控的小项目。
-
-它保留了最初来自 OpenClaw 浏览器自动化的思路：
-
-- 使用真实浏览器
-- 在真实登录态里执行页面操作
-- 用结构化结果写回任务文件
-
-但执行层改成了更可控的实现：
+一个面向京东下单价检查的专用执行器。核心链路固定为：
 
 - `WSL`
 - `Windows Chrome`
 - `Windows CDP proxy`
 - `Playwright`
 
-这个项目的目标不是做一个泛化网页 Agent，而是做一个针对京东下单价格检查更稳定、更容易调试、更适合批量任务维护的专用执行器。
-
-## 技术原理
-
-这套方案的核心原理很简单：
-
-1. 在 Windows 上启动真实 Chrome，并保留真实登录态  
-2. 通过 CDP 把这个浏览器暴露给 WSL 中的执行脚本  
-3. 用 Playwright 接管这个真实浏览器页面，而不是启动一个新的 Linux 浏览器  
-4. 打开商品页后，优先走已经验证过稳定的 `立即购买` 点击链路  
-5. 进入确认订单页后，读取 `商品总额`、`应付金额`、`实付款` 等价格信号  
-6. 把成功价格或失败原因写回 JSON  
-
-这样做的原因是：
-
-- 真实 Windows Chrome 更容易复用你的登录态
-- 对京东这类站点，真实浏览器环境比纯模拟环境更稳
-- Playwright 的页面控制和调试能力比通用 Agent 更适合做确定性任务
-- 配置文件驱动更适合你后面长期批量维护 URL
-
-这个项目只做一件事：
-
-- 使用你的 Windows Chrome
-- 打开京东商品 URL
-- 点击 `立即购买`
-- 进入确认订单页
-- 读取下单金额
-- 把结果写回 JSON
-
-当前主链路已经固定为：
-
-- `WSL`
-- `Windows Chrome`
-- `Windows CDP proxy`
-- `Playwright`
-
-不是 Linux 浏览器方案，也不再依赖早期的 OpenRouter/OpenClaw agent 包装层。
+项目目标不是通用网页 Agent，而是稳定地复用真实登录态，进入京东购买链路并提取下单页价格。
 
 ## 当前目录
 
-- [scripts/order_price_runner.mjs](/home/alex/DTAlex/openclaw-browser-order-price/scripts/order_price_runner.mjs)
-  主执行器
-- [scripts/prepare_login_session.mjs](/home/alex/DTAlex/openclaw-browser-order-price/scripts/prepare_login_session.mjs)
-  拉起 Windows Chrome 并准备京东登录
-- [scripts/windows_cdp_proxy.mjs](/home/alex/DTAlex/openclaw-browser-order-price/scripts/windows_cdp_proxy.mjs)
-  把 Windows 本机 `9222` 转成 WSL 可访问的 `9223`
-- [config/runner.json](/home/alex/DTAlex/openclaw-browser-order-price/config/runner.json)
-  主配置文件
-- [data/test.json](/home/alex/DTAlex/openclaw-browser-order-price/data/test.json)
-  当前输入样例
+- [scripts/order_price_runner.mjs](/home/alex/DTAlex/openclaw-browser-order-price/scripts/order_price_runner.mjs)：主执行器
+- [scripts/prepare_login_session.mjs](/home/alex/DTAlex/openclaw-browser-order-price/scripts/prepare_login_session.mjs)：拉起指定 profile 的 Windows Chrome
+- [scripts/windows_cdp_proxy.mjs](/home/alex/DTAlex/openclaw-browser-order-price/scripts/windows_cdp_proxy.mjs)：把 Windows Chrome CDP 暴露给 WSL
+- [scripts/multi_account_runner.mjs](/home/alex/DTAlex/openclaw-browser-order-price/scripts/multi_account_runner.mjs)：单机多账号调度器
+- [config/runner.json](/home/alex/DTAlex/openclaw-browser-order-price/config/runner.json)：单账号主配置
+- [config/multi_runner.json](/home/alex/DTAlex/openclaw-browser-order-price/config/multi_runner.json)：多账号切片配置
 
-## 运行前提
-
-- 在 WSL 里运行项目
-- Windows 已安装 Chrome
-- Windows 已安装 Node.js
-- 你会在 Windows Chrome 里手动登录京东
-
-项目依赖：
+## 安装
 
 ```bash
 cd /home/alex/DTAlex/openclaw-browser-order-price
 npm install
 ```
 
-## 配置文件
+## 单账号运行
 
-主要配置都放在：
-
-- [config/runner.json](/home/alex/DTAlex/openclaw-browser-order-price/config/runner.json)
-
-这个文件是标准 JSON。
-
-为了方便阅读，备注写成了以下划线开头的字段，例如：
-
-```json
-"limit": 5,
-"_limit_comment": "这次最多跑多少条。0 表示不限制，全量跑。"
-```
-
-程序会自动忽略所有以下划线开头的字段。
-
-最常改的字段：
-
-- `input.jsonFile`
-- `input.outputFile`
-- `input.writeInPlace`
-- `input.limit`
-- `input.offset`
-- `input.shuffle`
-- `behavior.pauseEvery`
-- `behavior.pauseMinMs`
-- `behavior.pauseMaxMs`
-- `behavior.minOpenMs`
-- `behavior.maxOpenMs`
-- `behavior.minClickMs`
-- `behavior.maxClickMs`
-- `interaction.interactiveLogin`
-- `interaction.interactiveRisk`
-- `interaction.verbose`
-
-查看当前实际生效配置：
+1. 启动 Chrome 并准备登录：
 
 ```bash
-cd /home/alex/DTAlex/openclaw-browser-order-price
-npm run print-config
+npm run prepare-login -- --port 9222 --profile-dir "D:\\DTAlex\\Skills\\price_crawl\\state\\chrome-profile-a"
 ```
 
-## 标准运行顺序
+2. 在该窗口里手动登录京东。
 
-### 1. 拉起 Windows Chrome
-
-```bash
-cd /home/alex/DTAlex/openclaw-browser-order-price
-npm run prepare-login
-```
-
-这一步会拉起 Windows Chrome，并打开京东首页。
-
-### 2. 在 Windows Chrome 里完成登录
-
-只要登录一次并保持会话，后续批量任务就会复用这个浏览器会话。
-
-### 3. 启动 Windows 侧 CDP 代理
+3. 启动 CDP 代理：
 
 ```bash
 powershell.exe -NoProfile -Command "Start-Process node -ArgumentList 'D:\\DTAlex\\Skills\\price_crawl\\windows_cdp_proxy.mjs','0.0.0.0','9223','127.0.0.1','9222' -WindowStyle Hidden"
 ```
 
-### 4. 检查配置
+4. 检查配置并执行：
 
 ```bash
-cd /home/alex/DTAlex/openclaw-browser-order-price
 npm run print-config
-```
-
-### 5. 执行批量任务
-
-```bash
-cd /home/alex/DTAlex/openclaw-browser-order-price
 npm run run-batch
 ```
 
-## 临时覆盖参数
+## 多账号运行
 
-平时直接改 [config/runner.json](/home/alex/DTAlex/openclaw-browser-order-price/config/runner.json) 就够了。
+`multi_runner.json` 会把同一个 `test.json` 切成连续批次，分给多个账号并发处理。当前示例是：
 
-如果只是临时测一轮，也可以只覆盖少量参数。
+- `accountA`: `9222 -> 9223`
+- `accountB`: `9224 -> 9225`
 
-例如临时跑前 10 条：
+详细步骤如下。
 
-```bash
-cd /home/alex/DTAlex/openclaw-browser-order-price
-npm run run-batch -- --limit 10
-```
-
-例如从第 11 条开始再跑 10 条：
+1. 拉起账号 A 的独立 Chrome：
 
 ```bash
-cd /home/alex/DTAlex/openclaw-browser-order-price
-npm run run-batch -- --offset 10 --limit 10
+npm run prepare-login -- --port 9222 --profile-dir "D:\\DTAlex\\Skills\\price_crawl\\state\\chrome-profile-a"
 ```
 
-例如临时打开详细日志：
+2. 拉起账号 B 的独立 Chrome：
 
 ```bash
-cd /home/alex/DTAlex/openclaw-browser-order-price
-npm run run-batch -- --verbose
+npm run prepare-login -- --port 9224 --profile-dir "D:\\DTAlex\\Skills\\price_crawl\\state\\chrome-profile-b"
 ```
 
-## 结果回写
+3. 分别在两个窗口里登录不同京东账号，并确认互不影响。
 
-执行器会按任务结果更新 JSON。
+4. 启动账号 A 的代理：
 
-常见字段：
+```bash
+powershell.exe -NoProfile -Command "Start-Process node -ArgumentList 'D:\\DTAlex\\Skills\\price_crawl\\windows_cdp_proxy.mjs','0.0.0.0','9223','127.0.0.1','9222' -WindowStyle Hidden"
+```
 
-- `price`
-  成功时写入类似 `¥11099.00`
-- `error`
-  成功为 `false`，失败为 `true`
-- `error_reason`
-  失败原因
-- `run_status`
-  例如 `success`、`exception`、`relogin_required`
-- `checkout_signal`
-  价格提取信号，例如 `商品总额`、`应付金额`
-- `purchase_entry`
-  本次实际点击的购买入口
-- `screenshot_path`
-  运行时截图路径
+5. 启动账号 B 的代理：
 
-## 风控策略
+```bash
+powershell.exe -NoProfile -Command "Start-Process node -ArgumentList 'D:\\DTAlex\\Skills\\price_crawl\\windows_cdp_proxy.mjs','0.0.0.0','9225','127.0.0.1','9224' -WindowStyle Hidden"
+```
 
-为了降低京东风控概率，当前版本把“模拟人类操作”放在外围控制层，而不是改动主点击链路。
+6. 预览切片计划：
 
-当前可调的控制项主要是：
+```bash
+npm run print-multi-plan
+```
 
-- 页面打开后的随机等待
-- 点击前后的随机等待
-- 每跑几条后的批次暂停
-- 登录/风控页面的人工暂停继续
+7. 正式启动并发：
 
-这也是为什么推荐你主要通过 [config/runner.json](/home/alex/DTAlex/openclaw-browser-order-price/config/runner.json) 调参，而不是每次敲长命令。
+```bash
+npm run run-multi
+```
 
-## 输出目录
+运行产物按账号独立落盘，例如：
 
-这些目录都是运行时产物，会在执行时自动生成：
+- `accountA/data/output1.json`
+- `accountA/state/run-state1.json`
+- `accountA/state/generated-config1.json`
+- `accountA/logs/runner1.log`
 
-- `evidence/`
-- `state/`
+总合并结果会同时导出两份：
 
-这些内容不属于源码，已经加入忽略规则，不会参与提交。
+- [data/multi_account_output.json](/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output.json)
+- [data/multi_account_output.xls](/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output.xls)
+
+## 关键配置
+
+[config/runner.json](/home/alex/DTAlex/openclaw-browser-order-price/config/runner.json) 里最常改的是：
+
+- `input.jsonFile` / `input.outputFile`
+- `behavior.pauseEvery` / `pauseMinMs` / `pauseMaxMs`
+- `behavior.minOpenMs` / `maxOpenMs`
+- `behavior.minClickMs` / `maxClickMs`
+- `retry.checkoutBlockedRetries`
+- `retry.checkoutBlockedIntervalMs`
+- `interaction.verbose`
+- `interaction.logFile`
+
+查看当前实际生效配置：
+
+```bash
+npm run print-config
+```
+
+## 结果语义
+
+- `run_status: success`：成功进入结算页并提取到有效价格。通常会带 `checkout_signal: 商品总额` 等结算信号。
+- `run_status: checkout_blocked`：点击购买入口后未进入结算页，常见于账号被限制、链路被拦或只停留在商品页价格态。
+- `run_status: relogin_required`：登录态失效或触发风控，需要人工处理后再继续。
+- `run_status: exception`：脚本层面的普通异常，例如未找到购买入口。
+
+`缺货/售罄` 属于业务结果，不代表脚本本身失效。
+
+## 日志与证据
+
+- `verbose=true` 时，日志会自动追加写入 `interaction.logFile`
+- `debugDump=true` 时，会把页面调试信息写到 `debugDumpDir`
+- 运行截图统一写入 `evidence/`
+
+如果你希望保留多轮测试证据，直接在配置里手动修改编号，例如 `output1.json -> output2.json`、`runner1.log -> runner2.log`、`generated-config1.json -> generated-config2.json`。

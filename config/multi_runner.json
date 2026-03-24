@@ -4,6 +4,8 @@
 
   "mergedOutputFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output.json",
   "_mergedOutputFile_comment": "所有账号跑完后合并出的总结果文件。",
+  "mergedExcelFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output.xls",
+  "_mergedExcelFile_comment": "合并结果对应的 Excel 兼容表格文件。",
 
   "workers": [
     {

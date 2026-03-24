@@ -81,6 +81,63 @@ function wrapTasksPayload(raw, tasks, envelopeType) {
   return tasks;
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function collectColumns(tasks) {
+  const ordered = [];
+  const seen = new Set();
+  for (const task of tasks) {
+    if (!task || typeof task !== "object" || Array.isArray(task)) continue;
+    for (const key of Object.keys(task)) {
+      if (seen.has(key)) continue;
+      seen.add(key);
+      ordered.push(key);
+    }
+  }
+  return ordered;
+}
+
+function writeExcelTable(filePath, tasks) {
+  const columns = collectColumns(tasks);
+  const head = columns.map((key) => `<th>${escapeHtml(key)}</th>`).join("");
+  const rows = tasks
+    .map((task) => {
+      const cells = columns
+        .map((key) => {
+          const value = task?.[key];
+          if (value === null || value === undefined) return "<td></td>";
+          if (typeof value === "object") return `<td>${escapeHtml(JSON.stringify(value))}</td>`;
+          return `<td>${escapeHtml(value)}</td>`;
+        })
+        .join("");
+      return `<tr>${cells}</tr>`;
+    })
+    .join("\n");
+
+  const html = [
+    "<html>",
+    "<head>",
+    '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />',
+    "</head>",
+    "<body>",
+    "<table border=\"1\">",
+    `<thead><tr>${head}</tr></thead>`,
+    `<tbody>${rows}</tbody>`,
+    "</table>",
+    "</body>",
+    "</html>",
+  ].join("\n");
+
+  ensureDir(path.dirname(filePath));
+  fs.writeFileSync(filePath, `\uFEFF${html}`);
+}
+
 function buildSlices(total, workerCount, startOffset = 0, selectedLimit = 0) {
   const available = Math.max(0, total - Math.max(0, startOffset));
   const selected = selectedLimit > 0 ? Math.min(available, selectedLimit) : available;
@@ -236,14 +293,18 @@ async function main() {
 
   const mergedOutputFile = path.resolve(PROJECT_DIR, multiConfig.mergedOutputFile || path.join("data", "multi_account_output.json"));
   const mergedPayload = mergeWorkerOutputs(rawPayload, envelopeType, workerPlans);
+  const { tasks: mergedTasks } = normalizeTasksPayload(mergedPayload);
+  const mergedExcelFile = path.resolve(PROJECT_DIR, multiConfig.mergedExcelFile || path.join("data", "multi_account_output.xls"));
   ensureDir(path.dirname(mergedOutputFile));
   fs.writeFileSync(mergedOutputFile, JSON.stringify(mergedPayload, null, 2));
+  writeExcelTable(mergedExcelFile, mergedTasks);
 
   console.log(
     JSON.stringify(
       {
         status: "ok",
         merged_output_file: mergedOutputFile,
+        merged_excel_file: mergedExcelFile,
         worker_count: workerPlans.length,
       },
       null,
