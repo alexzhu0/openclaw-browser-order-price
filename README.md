@@ -55,6 +55,8 @@ npm run run-batch
 - `accountA`: `9222 -> 9223`
 - `accountB`: `9224 -> 9225`
 
+多账号模式自己的切片总量由 `inputOffset` / `inputLimit` 控制，不再继承 `runner.json` 里的单账号 `offset` / `limit`。
+
 详细步骤如下。
 
 1.2. 拉起账号 A|B 的独立 Chrome：
@@ -98,6 +100,35 @@ npm run run-multi
 
 - [data/multi_account_output.json](/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output.json)
 - [data/multi_account_output.xls](/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output.xls)
+
+同时还会维护一份最终结果：
+
+- `finalMergedOutputFile`
+- `finalMergedExcelFile`
+
+这两份文件的语义是：无论跑几轮、补跑几轮，都会在上一轮最终结果的基础上被覆盖更新，始终代表“当前为止最完整的一版结果”。
+
+同时还会自动导出待补跑清单：
+
+- `pendingRerunFile`
+- `pendingRerunExcelFile`
+
+默认筛选的状态是：
+
+- `relogin_required`
+- `checkout_blocked`
+
+如果你要直接补跑这些待补跑任务，不需要手工复制切片配置，直接执行：
+
+```bash
+npm run print-multi-pending-plan
+npm run run-multi-pending
+```
+
+这个入口会自动读取 `multi_runner.json` 里的 `pendingRerunFile`，再按当前 worker 配置把待补跑 URL 重新切片并发执行。补跑完成后：
+
+- 本轮补跑结果仍会写到 `mergedOutputFile` / `mergedExcelFile`
+- 最终完整结果会自动更新到 `finalMergedOutputFile` / `finalMergedExcelFile`
 
 ## 关键配置
 

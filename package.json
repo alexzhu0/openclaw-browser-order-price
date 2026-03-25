@@ -9,7 +9,9 @@
     "run-batch": "node scripts/order_price_runner.mjs --config config/runner.json",
     "print-config": "node scripts/order_price_runner.mjs --config config/runner.json --print-config",
     "run-multi": "node scripts/multi_account_runner.mjs --config config/multi_runner.json",
-    "print-multi-plan": "node scripts/multi_account_runner.mjs --config config/multi_runner.json --print-plan"
+    "print-multi-plan": "node scripts/multi_account_runner.mjs --config config/multi_runner.json --print-plan",
+    "run-multi-pending": "node scripts/rerun_pending_multi.mjs --config config/multi_runner.json",
+    "print-multi-pending-plan": "node scripts/rerun_pending_multi.mjs --config config/multi_runner.json --print-plan"
   },
   "keywords": [],
   "author": "",

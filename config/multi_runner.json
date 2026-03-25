@@ -1,48 +1,65 @@
 {
   "baseConfigPath": "config/runner.json",
   "_baseConfigPath_comment": "基础 runner 配置。dispatcher 会在这个配置上为每个账号注入不同 offset/limit/output/state/log。",
+  "inputOffset": 0,
+  "_inputOffset_comment": "多账号模式自己的起始偏移，不继承 runner.json 的 offset;如果是10,那就是从第10个开始。",
+  "inputLimit": 0,
+  "_inputLimit_comment": "多账号模式自己的总量限制。0 表示跑完整输入文件，不继承 runner.json 的 limit，如果offset是10，limit=43，那就是跑第10-52个",
 
-  "mergedOutputFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output20260325-2.json",
+  "mergedOutputFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output-2.json",
   "_mergedOutputFile_comment": "所有账号跑完后合并出的总结果文件。",
-  "mergedExcelFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output20260325-2.xls",
+  "mergedExcelFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output-2.xls",
   "_mergedExcelFile_comment": "合并结果对应的 Excel 兼容表格文件。",
+  "finalMergedOutputFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/final_output-2.json",
+  "_finalMergedOutputFile_comment": "无论跑几轮或补跑几轮，都会持续覆盖更新这份最终完整 JSON。",
+  "finalMergedExcelFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/final_output-2.xls",
+  "_finalMergedExcelFile_comment": "最终完整结果对应的 Excel 兼容表格文件。",
+  "pendingRerunFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/pending_rerun_tasks-2.json",
+  "_pendingRerunFile_comment": "自动筛出的待补跑 JSON。通常包含 relogin_required 和 checkout_blocked。",
+  "pendingRerunExcelFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/pending_rerun_tasks-2.xls",
+  "_pendingRerunExcelFile_comment": "待补跑清单对应的 Excel 兼容表格文件。",
+  "pendingRerunStatuses": [
+    "relogin_required",
+    "checkout_blocked"
+  ],
+  "_pendingRerunStatuses_comment": "哪些 run_status 会被自动筛进待补跑清单。",
 
   "workers": [
     {
       "name": "accountA",
       "_name_comment": "账号标识，用于生成独立日志、状态文件和临时配置。",
       "enabled": true,
-      "generatedConfigPath": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/generated-config20260325-2.json",
+      "generatedConfigPath": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/generated-config-2.json",
       "cdp": {
         "host": "172.24.96.1",
         "port": 9223
       },
       "input": {
-        "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/data/output20260325-2.json"
+        "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/data/output-2.json"
       },
       "output": {
-        "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/run-state20260325-2.json"
+        "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/run-state-2.json"
       },
       "interaction": {
-        "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/logs/runner20260325-2.log"
+        "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/logs/runner-2.log"
       }
     },
     {
       "name": "accountB",
       "enabled": true,
-      "generatedConfigPath": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/state/generated-config20260325-2.json",
+      "generatedConfigPath": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/state/generated-config-2.json",
       "cdp": {
         "host": "172.24.96.1",
         "port": 9225
       },
       "input": {
-        "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/data/output20260325-2.json"
+        "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/data/output-2.json"
       },
       "output": {
-        "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/state/run-state20260325-2.json"
+        "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/state/run-state-2.json"
       },
       "interaction": {
-        "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/logs/runner20260325-2.log"
+        "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/logs/runner-2.log"
       }
     }
   ],

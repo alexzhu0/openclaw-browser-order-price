@@ -5,6 +5,7 @@
 - `scripts/prepare_login_session.mjs` 负责拉起指定 `profile-dir` 的 Windows Chrome。
 - `scripts/windows_cdp_proxy.mjs` 把 Windows Chrome 的 CDP 暴露给 WSL。
 - `scripts/multi_account_runner.mjs` 用同一个输入文件切片驱动多账号并发。
+- `scripts/rerun_pending_multi.mjs` 用待补跑 JSON 重新驱动多账号补跑。
 - `config/runner.json` 是单账号配置；`config/multi_runner.json` 是多账号调度配置。
 - `accountA/`、`accountB/` 这类目录存放账号级运行产物：`data/`、`state/`、`logs/`。
 
@@ -15,6 +16,8 @@
 - `npm run run-batch` 按 `config/runner.json` 跑单账号批处理。
 - `npm run print-multi-plan` 预览多账号切片计划。
 - `npm run run-multi` 按 `config/multi_runner.json` 启动多账号并发。
+- `npm run print-multi-pending-plan` 预览待补跑任务的多账号切片。
+- `npm run run-multi-pending` 按待补跑 JSON 执行多账号补跑。
 
 ## 代码风格与命名规范
 - 使用 Node.js ESM，文件后缀统一为 `.mjs`。
@@ -27,12 +30,15 @@
 - 改动后至少执行 `node --check scripts/*.mjs` 中相关脚本，外加 `npm run print-config` 或 `npm run print-multi-plan`。
 - 购买链路相关修改，至少回归 1 个可下单商品和 1 个缺货商品。
 - 多账号修改要确认两个窗口登录态互不影响，再运行 `npm run run-multi`。
+- 补跑逻辑修改后，要确认 `pendingRerunFile`、`finalMergedOutputFile` 和 `finalMergedExcelFile` 都能正确更新。
 
 ## 结果与状态约定
 - `success` 表示进入结算页并拿到有效价格，通常会带 `checkout_signal`。
 - `checkout_blocked` 表示点击购买后未进入结算页，常见于账号受限或链路被拦。
 - `relogin_required` 表示需要人工处理登录或风控。
 - `exception` 表示普通执行异常，例如未找到购买入口。
+- `pendingRerunFile` 默认收集 `relogin_required`、`checkout_blocked` 和未处理到的空白任务。
+- `finalMergedOutputFile` / `finalMergedExcelFile` 是多轮跑批和补跑后始终维护的一份最终完整结果。
 
 ## 提交与配置提示
 - 提交信息保持短句、祈使句风格，例如 `Add checkout-blocked retries and multi-account runner`。

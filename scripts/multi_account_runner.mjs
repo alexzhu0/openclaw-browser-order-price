@@ -10,11 +10,13 @@ function parseArgs(argv) {
   const out = {
     configPath: DEFAULT_CONFIG_PATH,
     printPlan: false,
+    jsonFile: "",
   };
   for (let i = 2; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === "--config") out.configPath = argv[++i];
     else if (arg === "--print-plan") out.printPlan = true;
+    else if (arg === "--json-file") out.jsonFile = argv[++i];
   }
   return out;
 }
@@ -67,6 +69,38 @@ function loadJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
+function getTodayYYMMDD(now = new Date()) {
+  const yy = String(now.getFullYear()).slice(-2);
+  const p = (n) => String(n).padStart(2, "0");
+  return `${yy}${p(now.getMonth() + 1)}${p(now.getDate())}`;
+}
+
+function stampDatePartInString(value, yyMMdd) {
+  if (typeof value !== "string") return value;
+  // 支持两种写法：
+  // 1) 已含日期：output20260325-2.json -> output260325-2.json
+  // 2) 不含日期：output-2.json -> output260325-2.json
+  const prefixes = [
+    "multi_account_output",
+    "final_output",
+    "pending_rerun_tasks",
+    "generated-config",
+    "output",
+    "run-state",
+    "runner",
+  ].join("|");
+  const dateInsertRe = new RegExp(`(${prefixes})(?:\\d{6}|\\d{8})?-(\\d+)`, "g");
+  return value.replace(dateInsertRe, (_m, prefix, seq) => `${prefix}${yyMMdd}-${seq}`);
+}
+
+function deepStampDatePart(value, yyMMdd) {
+  if (Array.isArray(value)) return value.map((item) => deepStampDatePart(item, yyMMdd));
+  if (!value || typeof value !== "object") return stampDatePartInString(value, yyMMdd);
+  const out = {};
+  for (const [k, v] of Object.entries(value)) out[k] = deepStampDatePart(v, yyMMdd);
+  return out;
+}
+
 function normalizeTasksPayload(raw) {
   if (Array.isArray(raw)) return { tasks: raw, envelopeType: "array" };
   if (raw && Array.isArray(raw.items)) return { tasks: raw.items, envelopeType: "items" };
@@ -79,6 +113,16 @@ function wrapTasksPayload(raw, tasks, envelopeType) {
   if (envelopeType === "items") return { ...raw, items: tasks };
   if (envelopeType === "data") return { ...raw, data: tasks };
   return tasks;
+}
+
+function stripHelperFields(task) {
+  if (!task || typeof task !== "object" || Array.isArray(task)) return task;
+  const out = {};
+  for (const [key, value] of Object.entries(task)) {
+    if (key.startsWith("_rerun_")) continue;
+    out[key] = value;
+  }
+  return out;
 }
 
 function escapeHtml(value) {
@@ -232,21 +276,52 @@ function mergeWorkerOutputs(rawPayload, envelopeType, workerPlans) {
   return wrapTasksPayload(rawPayload, merged, envelopeType);
 }
 
+function pickPendingTasks(tasks, statuses) {
+  const wanted = new Set((statuses || []).map((item) => String(item).trim()).filter(Boolean));
+  return tasks
+    .map((task, index) => ({ ...task, _rerun_source_index: index }))
+    .filter((task) => {
+      const status = String(task?.run_status || "").trim();
+      return !status || wanted.has(status);
+    });
+}
+
+function mergeIntoFinalPayload(basePayload, rerunTasks) {
+  const { tasks, envelopeType } = normalizeTasksPayload(basePayload);
+  const merged = [...tasks];
+  for (const task of rerunTasks) {
+    const originalIndex = Number(task?._rerun_source_index);
+    const cleanTask = stripHelperFields(task);
+    if (Number.isInteger(originalIndex) && originalIndex >= 0 && originalIndex < merged.length) {
+      merged[originalIndex] = cleanTask;
+      continue;
+    }
+    const url = String(cleanTask?.URL ?? cleanTask?.url ?? "").trim();
+    if (!url) continue;
+    const foundIndex = merged.findIndex((item) => String(item?.URL ?? item?.url ?? "").trim() === url);
+    if (foundIndex >= 0) merged[foundIndex] = cleanTask;
+  }
+  return wrapTasksPayload(basePayload, merged, envelopeType);
+}
+
 async function main() {
   const args = parseArgs(process.argv);
   const multiConfigRaw = loadJson(args.configPath);
-  const multiConfig = cleanConfig(multiConfigRaw);
+  const multiConfig = deepStampDatePart(cleanConfig(multiConfigRaw), getTodayYYMMDD());
   const baseConfigPath = path.resolve(PROJECT_DIR, multiConfig.baseConfigPath || "config/runner.json");
   const baseConfigRaw = loadJson(baseConfigPath);
   const baseConfig = cleanConfig(baseConfigRaw);
   const baseOptions = flattenRunnerConfig(baseConfig);
   const enabledWorkers = (multiConfig.workers ?? []).filter((worker) => worker.enabled !== false);
   if (!enabledWorkers.length) throw new Error("no enabled workers configured");
-  if (!baseOptions.jsonFile) throw new Error("base runner config must define input.jsonFile");
+  const inputFile = args.jsonFile || baseOptions.jsonFile;
+  if (!inputFile) throw new Error("base runner config must define input.jsonFile");
 
-  const rawPayload = loadJson(baseOptions.jsonFile);
+  const rawPayload = loadJson(inputFile);
   const { tasks, envelopeType } = normalizeTasksPayload(rawPayload);
-  const slices = buildSlices(tasks.length, enabledWorkers.length, baseOptions.offset || 0, baseOptions.limit || 0);
+  const multiOffset = Number(multiConfig.inputOffset || 0);
+  const multiLimit = Number(multiConfig.inputLimit || 0);
+  const slices = buildSlices(tasks.length, enabledWorkers.length, multiOffset, multiLimit);
   const workerPlans = enabledWorkers.map((worker, index) => {
     const slice = slices[index];
     const workerConfig = buildWorkerConfig(baseConfig, worker, slice);
@@ -265,7 +340,7 @@ async function main() {
 
   const plan = {
     baseConfigPath,
-    inputFile: baseOptions.jsonFile,
+    inputFile,
     totalTasks: tasks.length,
     workers: workerPlans.map((worker) => ({
       name: worker.name,
@@ -297,9 +372,27 @@ async function main() {
   const mergedPayload = mergeWorkerOutputs(rawPayload, envelopeType, workerPlans);
   const { tasks: mergedTasks } = normalizeTasksPayload(mergedPayload);
   const mergedExcelFile = path.resolve(PROJECT_DIR, multiConfig.mergedExcelFile || path.join("data", "multi_account_output.xls"));
+  const finalMergedOutputFile = path.resolve(PROJECT_DIR, multiConfig.finalMergedOutputFile || mergedOutputFile);
+  const finalMergedExcelFile = path.resolve(PROJECT_DIR, multiConfig.finalMergedExcelFile || mergedExcelFile);
+  const pendingStatuses = multiConfig.pendingRerunStatuses || ["relogin_required", "checkout_blocked"];
+  const pendingTasks = pickPendingTasks(mergedTasks, pendingStatuses);
+  const pendingRerunFile = path.resolve(PROJECT_DIR, multiConfig.pendingRerunFile || path.join("data", "pending_rerun_tasks.json"));
+  const pendingRerunExcelFile = path.resolve(PROJECT_DIR, multiConfig.pendingRerunExcelFile || path.join("data", "pending_rerun_tasks.xls"));
   ensureDir(path.dirname(mergedOutputFile));
   fs.writeFileSync(mergedOutputFile, JSON.stringify(mergedPayload, null, 2));
   writeExcelTable(mergedExcelFile, mergedTasks);
+  const finalPayload = args.jsonFile
+    ? mergeIntoFinalPayload(
+        fs.existsSync(finalMergedOutputFile) ? loadJson(finalMergedOutputFile) : wrapTasksPayload(rawPayload, normalizeTasksPayload(rawPayload).tasks, envelopeType),
+        mergedTasks,
+      )
+    : mergedPayload;
+  const { tasks: finalTasks } = normalizeTasksPayload(finalPayload);
+  ensureDir(path.dirname(finalMergedOutputFile));
+  fs.writeFileSync(finalMergedOutputFile, JSON.stringify(finalPayload, null, 2));
+  writeExcelTable(finalMergedExcelFile, finalTasks);
+  fs.writeFileSync(pendingRerunFile, JSON.stringify(pendingTasks, null, 2));
+  writeExcelTable(pendingRerunExcelFile, pendingTasks);
 
   console.log(
     JSON.stringify(
@@ -307,6 +400,11 @@ async function main() {
         status: "ok",
         merged_output_file: mergedOutputFile,
         merged_excel_file: mergedExcelFile,
+        final_merged_output_file: finalMergedOutputFile,
+        final_merged_excel_file: finalMergedExcelFile,
+        pending_rerun_file: pendingRerunFile,
+        pending_rerun_excel_file: pendingRerunExcelFile,
+        pending_rerun_count: pendingTasks.length,
         worker_count: workerPlans.length,
       },
       null,
