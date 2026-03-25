@@ -1135,7 +1135,7 @@ async function maybeHandleLogin(page, interactiveLogin) {
     return {
       handled: true,
       result: {
-        status: "exception",
+        status: "relogin_required",
         error: "页面需要登录。请先运行 prepare_login_session.mjs 完成首次扫码登录，再执行批量任务。",
       },
     };

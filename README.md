@@ -57,29 +57,21 @@ npm run run-batch
 
 详细步骤如下。
 
-1. 拉起账号 A 的独立 Chrome：
+1.2. 拉起账号 A|B 的独立 Chrome：
 
 ```bash
 npm run prepare-login -- --port 9222 --profile-dir "D:\\DTAlex\\Skills\\price_crawl\\state\\chrome-profile-a"
-```
-
-2. 拉起账号 B 的独立 Chrome：
-
-```bash
 npm run prepare-login -- --port 9224 --profile-dir "D:\\DTAlex\\Skills\\price_crawl\\state\\chrome-profile-b"
 ```
 
 3. 分别在两个窗口里登录不同京东账号，并确认互不影响。
 
-4. 启动账号 A 的代理：
+提示：`run-multi` 默认关闭交互式回车等待。多账号模式要求你在启动前就准备好登录态；如果运行中掉登录或触发风控，worker 会直接写出状态，不会在终端里卡住等待人工回车。
+
+4.5. 启动账号 A|B 的代理：
 
 ```bash
 powershell.exe -NoProfile -Command "Start-Process node -ArgumentList 'D:\\DTAlex\\Skills\\price_crawl\\windows_cdp_proxy.mjs','0.0.0.0','9223','127.0.0.1','9222' -WindowStyle Hidden"
-```
-
-5. 启动账号 B 的代理：
-
-```bash
 powershell.exe -NoProfile -Command "Start-Process node -ArgumentList 'D:\\DTAlex\\Skills\\price_crawl\\windows_cdp_proxy.mjs','0.0.0.0','9225','127.0.0.1','9224' -WindowStyle Hidden"
 ```
 

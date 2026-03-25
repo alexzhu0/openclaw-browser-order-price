@@ -178,6 +178,8 @@ function buildWorkerConfig(baseConfig, worker, slice) {
   };
   merged.interaction = {
     ...(merged.interaction ?? {}),
+    interactiveLogin: worker.interaction?.interactiveLogin ?? false,
+    interactiveRisk: worker.interaction?.interactiveRisk ?? false,
     logFile: worker.interaction?.logFile ?? merged.interaction?.logFile ?? defaults.logFile,
   };
   return merged;

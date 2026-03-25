@@ -2,9 +2,9 @@
   "baseConfigPath": "config/runner.json",
   "_baseConfigPath_comment": "基础 runner 配置。dispatcher 会在这个配置上为每个账号注入不同 offset/limit/output/state/log。",
 
-  "mergedOutputFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output.json",
+  "mergedOutputFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output20260325-2.json",
   "_mergedOutputFile_comment": "所有账号跑完后合并出的总结果文件。",
-  "mergedExcelFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output.xls",
+  "mergedExcelFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output20260325-2.xls",
   "_mergedExcelFile_comment": "合并结果对应的 Excel 兼容表格文件。",
 
   "workers": [
@@ -12,37 +12,37 @@
       "name": "accountA",
       "_name_comment": "账号标识，用于生成独立日志、状态文件和临时配置。",
       "enabled": true,
-      "generatedConfigPath": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/generated-config1.json",
+      "generatedConfigPath": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/generated-config20260325-2.json",
       "cdp": {
         "host": "172.24.96.1",
         "port": 9223
       },
       "input": {
-        "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/data/output1.json"
+        "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/data/output20260325-2.json"
       },
       "output": {
-        "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/run-state1.json"
+        "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/run-state20260325-2.json"
       },
       "interaction": {
-        "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/logs/runner1.log"
+        "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/logs/runner20260325-2.log"
       }
     },
     {
       "name": "accountB",
       "enabled": true,
-      "generatedConfigPath": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/state/generated-config1.json",
+      "generatedConfigPath": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/state/generated-config20260325-2.json",
       "cdp": {
         "host": "172.24.96.1",
         "port": 9225
       },
       "input": {
-        "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/data/output1.json"
+        "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/data/output20260325-2.json"
       },
       "output": {
-        "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/state/run-state1.json"
+        "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/state/run-state20260325-2.json"
       },
       "interaction": {
-        "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/logs/runner1.log"
+        "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountB/logs/runner20260325-2.log"
       }
     }
   ],
