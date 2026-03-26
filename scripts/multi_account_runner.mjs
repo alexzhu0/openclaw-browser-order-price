@@ -3,6 +3,7 @@ import { spawn } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import * as XLSX from "xlsx";
 
 const PROJECT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DEFAULT_CONFIG_PATH = path.join(PROJECT_DIR, "config", "multi_runner.json");
@@ -23,6 +24,10 @@ function parseArgs(argv) {
 
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
+}
+
+function removeFileIfExists(filePath) {
+  if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
 }
 
 function cleanConfig(value) {
@@ -125,14 +130,6 @@ function stripHelperFields(task) {
   return out;
 }
 
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
-}
-
 function collectColumns(tasks) {
   const ordered = [];
   const seen = new Set();
@@ -147,39 +144,27 @@ function collectColumns(tasks) {
   return ordered;
 }
 
-function writeExcelTable(filePath, tasks) {
+function writeXlsxTable(filePath, tasks) {
   const columns = collectColumns(tasks);
-  const head = columns.map((key) => `<th>${escapeHtml(key)}</th>`).join("");
-  const rows = tasks
-    .map((task) => {
-      const cells = columns
-        .map((key) => {
-          const value = task?.[key];
-          if (value === null || value === undefined) return "<td></td>";
-          if (typeof value === "object") return `<td>${escapeHtml(JSON.stringify(value))}</td>`;
-          return `<td>${escapeHtml(value)}</td>`;
-        })
-        .join("");
-      return `<tr>${cells}</tr>`;
-    })
-    .join("\n");
-
-  const html = [
-    "<html>",
-    "<head>",
-    '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />',
-    "</head>",
-    "<body>",
-    "<table border=\"1\">",
-    `<thead><tr>${head}</tr></thead>`,
-    `<tbody>${rows}</tbody>`,
-    "</table>",
-    "</body>",
-    "</html>",
-  ].join("\n");
+  const rows = tasks.map((task) => {
+    const row = {};
+    for (const key of columns) {
+      const value = task?.[key];
+      row[key] = value === undefined ? "" : typeof value === "object" && value !== null ? JSON.stringify(value) : value;
+    }
+    return row;
+  });
+  const sheet = XLSX.utils.json_to_sheet(rows, { header: columns });
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, sheet, "results");
 
   ensureDir(path.dirname(filePath));
-  fs.writeFileSync(filePath, `\uFEFF${html}`);
+  XLSX.writeFile(workbook, filePath, { compression: true });
+}
+
+function normalizeXlsxOutputPath(configuredPath, defaultPath) {
+  const source = configuredPath || defaultPath;
+  return source.replace(/\.(xls|csv)$/i, ".xlsx");
 }
 
 function buildSlices(total, workerCount, startOffset = 0, selectedLimit = 0) {
@@ -371,16 +356,25 @@ async function main() {
   const mergedOutputFile = path.resolve(PROJECT_DIR, multiConfig.mergedOutputFile || path.join("data", "multi_account_output.json"));
   const mergedPayload = mergeWorkerOutputs(rawPayload, envelopeType, workerPlans);
   const { tasks: mergedTasks } = normalizeTasksPayload(mergedPayload);
-  const mergedExcelFile = path.resolve(PROJECT_DIR, multiConfig.mergedExcelFile || path.join("data", "multi_account_output.xls"));
+  const mergedXlsxFile = path.resolve(
+    PROJECT_DIR,
+    normalizeXlsxOutputPath(multiConfig.mergedXlsxFile || multiConfig.mergedExcelFile || multiConfig.mergedCsvFile, path.join("data", "multi_account_output.xlsx")),
+  );
   const finalMergedOutputFile = path.resolve(PROJECT_DIR, multiConfig.finalMergedOutputFile || mergedOutputFile);
-  const finalMergedExcelFile = path.resolve(PROJECT_DIR, multiConfig.finalMergedExcelFile || mergedExcelFile);
+  const finalMergedXlsxFile = path.resolve(
+    PROJECT_DIR,
+    normalizeXlsxOutputPath(multiConfig.finalMergedXlsxFile || multiConfig.finalMergedExcelFile || multiConfig.finalMergedCsvFile, mergedXlsxFile),
+  );
   const pendingStatuses = multiConfig.pendingRerunStatuses || ["relogin_required", "checkout_blocked"];
   const pendingTasks = pickPendingTasks(mergedTasks, pendingStatuses);
   const pendingRerunFile = path.resolve(PROJECT_DIR, multiConfig.pendingRerunFile || path.join("data", "pending_rerun_tasks.json"));
-  const pendingRerunExcelFile = path.resolve(PROJECT_DIR, multiConfig.pendingRerunExcelFile || path.join("data", "pending_rerun_tasks.xls"));
+  const pendingRerunXlsxFile = path.resolve(
+    PROJECT_DIR,
+    normalizeXlsxOutputPath(multiConfig.pendingRerunXlsxFile || multiConfig.pendingRerunExcelFile || multiConfig.pendingRerunCsvFile, path.join("data", "pending_rerun_tasks.xlsx")),
+  );
   ensureDir(path.dirname(mergedOutputFile));
   fs.writeFileSync(mergedOutputFile, JSON.stringify(mergedPayload, null, 2));
-  writeExcelTable(mergedExcelFile, mergedTasks);
+  writeXlsxTable(mergedXlsxFile, mergedTasks);
   const finalPayload = args.jsonFile
     ? mergeIntoFinalPayload(
         fs.existsSync(finalMergedOutputFile) ? loadJson(finalMergedOutputFile) : wrapTasksPayload(rawPayload, normalizeTasksPayload(rawPayload).tasks, envelopeType),
@@ -390,20 +384,25 @@ async function main() {
   const { tasks: finalTasks } = normalizeTasksPayload(finalPayload);
   ensureDir(path.dirname(finalMergedOutputFile));
   fs.writeFileSync(finalMergedOutputFile, JSON.stringify(finalPayload, null, 2));
-  writeExcelTable(finalMergedExcelFile, finalTasks);
-  fs.writeFileSync(pendingRerunFile, JSON.stringify(pendingTasks, null, 2));
-  writeExcelTable(pendingRerunExcelFile, pendingTasks);
+  writeXlsxTable(finalMergedXlsxFile, finalTasks);
+  if (pendingTasks.length > 0) {
+    fs.writeFileSync(pendingRerunFile, JSON.stringify(pendingTasks, null, 2));
+    writeXlsxTable(pendingRerunXlsxFile, pendingTasks);
+  } else {
+    removeFileIfExists(pendingRerunFile);
+    removeFileIfExists(pendingRerunXlsxFile);
+  }
 
   console.log(
     JSON.stringify(
       {
         status: "ok",
         merged_output_file: mergedOutputFile,
-        merged_excel_file: mergedExcelFile,
+        merged_xlsx_file: mergedXlsxFile,
         final_merged_output_file: finalMergedOutputFile,
-        final_merged_excel_file: finalMergedExcelFile,
-        pending_rerun_file: pendingRerunFile,
-        pending_rerun_excel_file: pendingRerunExcelFile,
+        final_merged_xlsx_file: finalMergedXlsxFile,
+        pending_rerun_file: pendingTasks.length > 0 ? pendingRerunFile : "",
+        pending_rerun_xlsx_file: pendingTasks.length > 0 ? pendingRerunXlsxFile : "",
         pending_rerun_count: pendingTasks.length,
         worker_count: workerPlans.length,
       },

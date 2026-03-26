@@ -99,24 +99,26 @@ npm run run-multi
 总合并结果会同时导出两份：
 
 - [data/multi_account_output.json](/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output.json)
-- [data/multi_account_output.xls](/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output.xls)
+- [data/multi_account_output.xlsx](/home/alex/DTAlex/openclaw-browser-order-price/data/multi_account_output.xlsx)
 
 同时还会维护一份最终结果：
 
 - `finalMergedOutputFile`
-- `finalMergedExcelFile`
+- `finalMergedXlsxFile`
 
 这两份文件的语义是：无论跑几轮、补跑几轮，都会在上一轮最终结果的基础上被覆盖更新，始终代表“当前为止最完整的一版结果”。
 
 同时还会自动导出待补跑清单：
 
 - `pendingRerunFile`
-- `pendingRerunExcelFile`
+- `pendingRerunXlsxFile`
 
 默认筛选的状态是：
 
 - `relogin_required`
 - `checkout_blocked`
+
+如果这轮没有待补跑任务，就不会生成 `pendingRerunFile` / `pendingRerunXlsxFile`。
 
 如果你要直接补跑这些待补跑任务，不需要手工复制切片配置，直接执行：
 
@@ -127,8 +129,8 @@ npm run run-multi-pending
 
 这个入口会自动读取 `multi_runner.json` 里的 `pendingRerunFile`，再按当前 worker 配置把待补跑 URL 重新切片并发执行。补跑完成后：
 
-- 本轮补跑结果仍会写到 `mergedOutputFile` / `mergedExcelFile`
-- 最终完整结果会自动更新到 `finalMergedOutputFile` / `finalMergedExcelFile`
+- 本轮补跑结果仍会写到 `mergedOutputFile` / `mergedXlsxFile`
+- 最终完整结果会自动更新到 `finalMergedOutputFile` / `finalMergedXlsxFile`
 
 ## 关键配置
 
@@ -142,6 +144,13 @@ npm run run-multi-pending
 - `retry.checkoutBlockedIntervalMs`
 - `interaction.verbose`
 - `interaction.logFile`
+
+[config/multi_runner.json](/home/alex/DTAlex/openclaw-browser-order-price/config/multi_runner.json) 里最常改的是：
+
+- `inputOffset` / `inputLimit`
+- `mergedOutputFile` / `mergedXlsxFile`
+- `finalMergedOutputFile` / `finalMergedXlsxFile`
+- `pendingRerunFile` / `pendingRerunXlsxFile`
 
 查看当前实际生效配置：
 

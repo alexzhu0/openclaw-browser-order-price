@@ -1,0 +1,44 @@
+{
+  "cdp": {
+    "host": "172.24.96.1",
+    "port": 9223
+  },
+  "input": {
+    "jsonFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/test.json",
+    "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/data/output260326-1.json",
+    "writeInPlace": false,
+    "limit": 43,
+    "offset": 0,
+    "shuffle": false,
+    "batchSize": 0
+  },
+  "behavior": {
+    "pauseEvery": 5,
+    "pauseMinMs": 60000,
+    "pauseMaxMs": 120000,
+    "minOpenMs": 10000,
+    "maxOpenMs": 20000,
+    "minClickMs": 4000,
+    "maxClickMs": 8000,
+    "waitAfterOpenMs": 5000,
+    "waitAfterClickMs": 5000
+  },
+  "retry": {
+    "checkoutBlockedRetries": 3,
+    "checkoutBlockedIntervalMs": 1800000
+  },
+  "interaction": {
+    "interactiveLogin": false,
+    "interactiveRisk": false,
+    "verbose": true,
+    "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/logs/runner260326-1.log",
+    "debugDump": false,
+    "debugDumpDir": "/home/alex/DTAlex/openclaw-browser-order-price/state/debug"
+  },
+  "output": {
+    "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/run-state260326-1.json"
+  },
+  "name": "accountA",
+  "enabled": true,
+  "generatedConfigPath": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/generated-config260326-1.json"
+}

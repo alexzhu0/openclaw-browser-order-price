@@ -30,7 +30,7 @@
 - 改动后至少执行 `node --check scripts/*.mjs` 中相关脚本，外加 `npm run print-config` 或 `npm run print-multi-plan`。
 - 购买链路相关修改，至少回归 1 个可下单商品和 1 个缺货商品。
 - 多账号修改要确认两个窗口登录态互不影响，再运行 `npm run run-multi`。
-- 补跑逻辑修改后，要确认 `pendingRerunFile`、`finalMergedOutputFile` 和 `finalMergedExcelFile` 都能正确更新。
+- 补跑逻辑修改后，要确认 `pendingRerunFile`、`finalMergedOutputFile` 和 `finalMergedXlsxFile` 都能正确更新。
 
 ## 结果与状态约定
 - `success` 表示进入结算页并拿到有效价格，通常会带 `checkout_signal`。
@@ -38,7 +38,9 @@
 - `relogin_required` 表示需要人工处理登录或风控。
 - `exception` 表示普通执行异常，例如未找到购买入口。
 - `pendingRerunFile` 默认收集 `relogin_required`、`checkout_blocked` 和未处理到的空白任务。
-- `finalMergedOutputFile` / `finalMergedExcelFile` 是多轮跑批和补跑后始终维护的一份最终完整结果。
+- `finalMergedOutputFile` / `finalMergedXlsxFile` 是多轮跑批和补跑后始终维护的一份最终完整结果。
+- 多账号结果导出当前以 `JSON + XLSX` 为准，不再依赖伪 `.xls`。
+- 如果待补跑数量为 0，就不要保留 `pendingRerunFile` / `pendingRerunXlsxFile` 空文件。
 
 ## 提交与配置提示
 - 提交信息保持短句、祈使句风格，例如 `Add checkout-blocked retries and multi-account runner`。
