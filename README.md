@@ -17,6 +17,10 @@
 - [scripts/multi_account_runner.mjs](/home/alex/DTAlex/openclaw-browser-order-price/scripts/multi_account_runner.mjs)：单机多账号调度器
 - [config/runner.json](/home/alex/DTAlex/openclaw-browser-order-price/config/runner.json)：单账号主配置
 - [config/multi_runner.json](/home/alex/DTAlex/openclaw-browser-order-price/config/multi_runner.json)：多账号切片配置
+- [windows/run-jd-price.ps1](/home/alex/DTAlex/openclaw-browser-order-price/windows/run-jd-price.ps1)：Windows 原生一键入口
+- [windows/run-jd-price.cmd](/home/alex/DTAlex/openclaw-browser-order-price/windows/run-jd-price.cmd)：PowerShell 包装入口
+- [config/runner.windows.json](/home/alex/DTAlex/openclaw-browser-order-price/config/runner.windows.json)：Windows 原生单账号配置
+- [config/multi_runner.windows.json](/home/alex/DTAlex/openclaw-browser-order-price/config/multi_runner.windows.json)：Windows 原生多账号配置
 
 ## 安装
 
@@ -24,6 +28,48 @@
 cd /home/alex/DTAlex/openclaw-browser-order-price
 npm install
 ```
+
+## Windows 原生一键入口
+
+如果你不想手工维护 WSL + CDP 代理链路，可以直接在 Windows 里跑：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\windows\run-jd-price.ps1 -Action print-config
+.\windows\run-jd-price.cmd -Action run-batch
+```
+
+这个入口会直接：
+
+- 读取 [config/runner.windows.json](/home/alex/DTAlex/openclaw-browser-order-price/config/runner.windows.json) 或 [config/multi_runner.windows.json](/home/alex/DTAlex/openclaw-browser-order-price/config/multi_runner.windows.json)
+- 按 `windows.profileDir` 拉起对应 Chrome
+- 直接连接本机 `127.0.0.1` 调试端口，不再经过 WSL 的 `windows_cdp_proxy`
+- 默认在 `node_modules` 不存在时自动执行 `npm install`
+
+单账号常用动作：
+
+```powershell
+.\windows\run-jd-price.cmd -Action prepare-login
+.\windows\run-jd-price.cmd -Action run-batch
+.\windows\run-jd-price.cmd -Action print-config
+```
+
+多账号常用动作：
+
+```powershell
+.\windows\run-jd-price.cmd -Action prepare-multi-login
+.\windows\run-jd-price.cmd -Action print-multi-plan
+.\windows\run-jd-price.cmd -Action run-multi
+.\windows\run-jd-price.cmd -Action print-multi-pending-plan
+.\windows\run-jd-price.cmd -Action run-multi-pending
+```
+
+Windows 原生模式的约定：
+
+- `config/runner.windows.json` 和 `config/multi_runner.windows.json` 里的路径都按 Windows 本机运行来写。
+- `prepare-login` / `prepare-multi-login` 会按 profile 先停掉同 profile 的旧 Chrome，再拉起新窗口。
+- `run-multi` / `run-multi-pending` 会先确保每个 enabled worker 的 Chrome 已启动，再执行 Node 脚本。
+- `accountB` 在 [config/multi_runner.windows.json](/home/alex/DTAlex/openclaw-browser-order-price/config/multi_runner.windows.json) 里默认是 `enabled: false`，启用前先配置独立 `profileDir` 和端口。
+- 如果你已经手工装过依赖，可以加 `-SkipInstall` 跳过自动 `npm install`。
 
 ## 单账号运行
 
@@ -59,31 +105,31 @@ npm run run-batch
 
 详细步骤如下。
 
-1.2. 拉起账号 A|B 的独立 Chrome：
+1. 拉起账号 A|B 的独立 Chrome：
 
 ```bash
 npm run prepare-login -- --port 9222 --profile-dir "D:\\DTAlex\\Skills\\price_crawl\\state\\chrome-profile-a"
 npm run prepare-login -- --port 9224 --profile-dir "D:\\DTAlex\\Skills\\price_crawl\\state\\chrome-profile-b"
 ```
 
-3. 分别在两个窗口里登录不同京东账号，并确认互不影响。
+2. 分别在两个窗口里登录不同京东账号，并确认互不影响。
 
 提示：`run-multi` 默认关闭交互式回车等待。多账号模式要求你在启动前就准备好登录态；如果运行中掉登录或触发风控，worker 会直接写出状态，不会在终端里卡住等待人工回车。
 
-4.5. 启动账号 A|B 的代理：
+3. 启动账号 A|B 的代理：
 
 ```bash
 powershell.exe -NoProfile -Command "Start-Process node -ArgumentList 'D:\\DTAlex\\Skills\\price_crawl\\windows_cdp_proxy.mjs','0.0.0.0','9223','127.0.0.1','9222' -WindowStyle Hidden"
 powershell.exe -NoProfile -Command "Start-Process node -ArgumentList 'D:\\DTAlex\\Skills\\price_crawl\\windows_cdp_proxy.mjs','0.0.0.0','9225','127.0.0.1','9224' -WindowStyle Hidden"
 ```
 
-6. 预览切片计划：
+4. 预览切片计划：
 
 ```bash
 npm run print-multi-plan
 ```
 
-7. 正式启动并发：
+5. 正式启动并发：
 
 ```bash
 npm run run-multi
@@ -131,6 +177,13 @@ npm run run-multi-pending
 
 - 本轮补跑结果仍会写到 `mergedOutputFile` / `mergedXlsxFile`
 - 最终完整结果会自动更新到 `finalMergedOutputFile` / `finalMergedXlsxFile`
+
+多轮补跑的约定是：
+
+- `pendingRerunFile` 里的原始索引会跨轮保留，不会在第二轮补跑时被错误改写。
+- worker 在 `run-multi-pending` 时会明确读取 pending JSON，而不是回退去读原始 `test.json`。
+- `finalMergedOutputFile` / `finalMergedXlsxFile` 始终是最终权威结果；补跑会按原索引优先回写，索引不可信时再回退到按 URL 定位。
+- 如果 `pending_rerun_count = 0`，本轮不会再写出空的 pending 文件。
 
 ## 关键配置
 

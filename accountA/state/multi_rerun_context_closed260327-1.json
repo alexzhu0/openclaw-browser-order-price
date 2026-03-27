@@ -1,0 +1,38 @@
+{
+  "baseConfigPath": "config/runner.json",
+  "inputOffset": 0,
+  "inputLimit": 0,
+  "mergedOutputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/data/multi_account_output_context_closed260327-1.json",
+  "mergedXlsxFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/data/multi_account_output_context_closed260327-1.xlsx",
+  "finalMergedOutputFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/final_output260327-1.json",
+  "finalMergedXlsxFile": "/home/alex/DTAlex/openclaw-browser-order-price/data/final_output260327-1.xlsx",
+  "pendingRerunFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/data/pending_context_closed260327-1.json",
+  "pendingRerunXlsxFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/data/pending_context_closed260327-1.xlsx",
+  "pendingRerunStatuses": [
+    "relogin_required",
+    "checkout_blocked"
+  ],
+  "workers": [
+    {
+      "name": "accountA",
+      "enabled": true,
+      "generatedConfigPath": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/generated-config_context_closed260327-1.json",
+      "cdp": {
+        "host": "172.24.96.1",
+        "port": 9223
+      },
+      "input": {
+        "outputFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/data/output_context_closed260327-1.json"
+      },
+      "output": {
+        "stateFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/state/run-state_context_closed260327-1.json"
+      },
+      "interaction": {
+        "logFile": "/home/alex/DTAlex/openclaw-browser-order-price/accountA/logs/runner_context_closed260327-1.log",
+        "interactiveLogin": false,
+        "interactiveRisk": false,
+        "verbose": true
+      }
+    }
+  ]
+}

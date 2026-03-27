@@ -1,0 +1,701 @@
+[2026-03-27T08:13:43.680Z] [runner] verbose logging enabled
+[2026-03-27T08:13:44.998Z] [runner] goto https://item.jd.com/10071585586035.html
+[2026-03-27T08:13:45.809Z] [runner] page_state {"visibilityState":"visible","innerWidth":1732,"innerHeight":1370,"scrollY":0}
+[2026-03-27T08:14:02.062Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:14:17.500Z] [runner] check_login
+[2026-03-27T08:14:17.510Z] [runner] check_risk
+[2026-03-27T08:14:17.682Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:14:18.912Z] [runner] goto https://item.jd.com/100167406051.html
+[2026-03-27T08:14:19.609Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:14:36.924Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:14:52.137Z] [runner] check_login
+[2026-03-27T08:14:52.143Z] [runner] check_risk
+[2026-03-27T08:14:52.214Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:14:52.251Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:14:52.251Z] [runner] click_purchase attempt 1
+[2026-03-27T08:14:52.311Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:14:59.981Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:14:59.981Z] [runner] price_info {"price_text":"商品总额 ￥4998.00","price_value":"4998.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:15:00.438Z] [runner] goto https://item.jd.com/100167406053.html
+[2026-03-27T08:15:00.916Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:15:12.102Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:15:27.303Z] [runner] check_login
+[2026-03-27T08:15:27.307Z] [runner] check_risk
+[2026-03-27T08:15:27.370Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:15:28.001Z] [runner] goto https://item.jd.com/100088612934.html
+[2026-03-27T08:15:28.477Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:15:42.651Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:15:57.866Z] [runner] check_login
+[2026-03-27T08:15:57.870Z] [runner] check_risk
+[2026-03-27T08:15:57.976Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:15:58.584Z] [runner] goto https://item.jd.com/100167406055.html
+[2026-03-27T08:15:59.019Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:16:12.460Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:16:27.661Z] [runner] check_login
+[2026-03-27T08:16:27.666Z] [runner] check_risk
+[2026-03-27T08:16:27.737Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:16:27.773Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:16:27.774Z] [runner] click_purchase attempt 1
+[2026-03-27T08:16:27.824Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:16:35.195Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:16:35.195Z] [runner] price_info {"price_text":"商品总额 ￥5898.00","price_value":"5898.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:18:08.832Z] [runner] goto https://item.jd.com/100262061520.html
+[2026-03-27T08:18:09.918Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:18:19.029Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:18:34.242Z] [runner] check_login
+[2026-03-27T08:18:34.246Z] [runner] check_risk
+[2026-03-27T08:18:34.305Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:18:34.339Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:18:34.339Z] [runner] click_purchase attempt 1
+[2026-03-27T08:18:34.384Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:18:41.435Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:18:41.435Z] [runner] price_info {"price_text":"商品总额 ￥6598.00","price_value":"6598.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:18:41.850Z] [runner] goto https://item.jd.com/10169044581492.html
+[2026-03-27T08:18:42.150Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:18:51.404Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:19:06.604Z] [runner] check_login
+[2026-03-27T08:19:06.608Z] [runner] check_risk
+[2026-03-27T08:19:06.665Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:19:06.691Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:19:06.691Z] [runner] click_purchase attempt 1
+[2026-03-27T08:19:06.735Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:19:13.707Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:19:13.707Z] [runner] price_info {"price_text":"商品总额 ￥6199.00","price_value":"6199.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:19:14.079Z] [runner] goto https://item.jd.com/100210750124.html
+[2026-03-27T08:19:14.531Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:19:24.954Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:19:40.146Z] [runner] check_login
+[2026-03-27T08:19:40.150Z] [runner] check_risk
+[2026-03-27T08:19:40.208Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:19:40.808Z] [runner] goto https://item.jd.com/100164275933.html
+[2026-03-27T08:19:41.313Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:19:55.826Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:20:11.024Z] [runner] check_login
+[2026-03-27T08:20:11.030Z] [runner] check_risk
+[2026-03-27T08:20:11.093Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:20:11.128Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:20:11.128Z] [runner] click_purchase attempt 1
+[2026-03-27T08:20:11.192Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:20:17.803Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:20:17.803Z] [runner] price_info {"price_text":"商品总额 ￥6998.00","price_value":"6998.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:20:18.250Z] [runner] goto https://item.jd.com/100213107608.html
+[2026-03-27T08:20:18.652Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:20:30.605Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:20:45.809Z] [runner] check_login
+[2026-03-27T08:20:45.813Z] [runner] check_risk
+[2026-03-27T08:20:45.890Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:20:45.926Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:20:45.926Z] [runner] click_purchase attempt 1
+[2026-03-27T08:20:45.980Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:20:50.806Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:20:50.806Z] [runner] price_info {"price_text":"商品总额 ￥8798.00","price_value":"8798.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:22:19.156Z] [runner] goto https://item.jd.com/100213107588.html
+[2026-03-27T08:22:19.777Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:22:32.097Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:22:47.286Z] [runner] check_login
+[2026-03-27T08:22:47.291Z] [runner] check_risk
+[2026-03-27T08:22:47.367Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:22:47.403Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:22:47.403Z] [runner] click_purchase attempt 1
+[2026-03-27T08:22:47.455Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:22:52.985Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:22:52.985Z] [runner] price_info {"price_text":"商品总额 ￥9298.00","price_value":"9298.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:22:53.376Z] [runner] goto https://item.jd.com/100165846395.html
+[2026-03-27T08:22:53.684Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:23:11.033Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:23:26.357Z] [runner] check_login
+[2026-03-27T08:23:26.362Z] [runner] check_risk
+[2026-03-27T08:23:26.417Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:23:26.458Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:23:26.459Z] [runner] click_purchase attempt 1
+[2026-03-27T08:23:26.526Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:23:31.105Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:23:31.105Z] [runner] price_info {"price_text":"商品总额 ￥10298.00","price_value":"10298.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:23:31.510Z] [runner] goto https://item.jd.com/100165846393.html
+[2026-03-27T08:23:31.898Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:23:45.901Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:24:01.274Z] [runner] check_login
+[2026-03-27T08:24:01.279Z] [runner] check_risk
+[2026-03-27T08:24:01.340Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:24:01.919Z] [runner] goto https://item.jd.com/100213107592.html
+[2026-03-27T08:24:02.452Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:24:17.744Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:24:33.023Z] [runner] check_login
+[2026-03-27T08:24:33.029Z] [runner] check_risk
+[2026-03-27T08:24:33.091Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:24:33.127Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:24:33.127Z] [runner] click_purchase attempt 1
+[2026-03-27T08:24:33.192Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:24:41.464Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:24:41.464Z] [runner] price_info {"price_text":"商品总额 ￥8898.00","price_value":"8898.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:24:41.908Z] [runner] goto https://item.jd.com/100165846403.html
+[2026-03-27T08:24:42.415Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:24:55.637Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:25:10.980Z] [runner] check_login
+[2026-03-27T08:25:10.984Z] [runner] check_risk
+[2026-03-27T08:25:11.041Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:25:11.067Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:25:11.067Z] [runner] click_purchase attempt 1
+[2026-03-27T08:25:11.106Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:25:17.924Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:25:17.925Z] [runner] price_info {"price_text":"商品总额 ￥9498.00","price_value":"9498.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:26:47.735Z] [runner] goto https://item.jd.com/100071851411.html
+[2026-03-27T08:26:48.258Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:27:06.667Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:27:21.866Z] [runner] check_login
+[2026-03-27T08:27:21.871Z] [runner] check_risk
+[2026-03-27T08:27:21.937Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:27:22.502Z] [runner] goto https://item.jd.com/100167105522.html
+[2026-03-27T08:27:22.990Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:27:33.987Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:27:49.184Z] [runner] check_login
+[2026-03-27T08:27:49.190Z] [runner] check_risk
+[2026-03-27T08:27:49.256Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:27:49.286Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:27:49.286Z] [runner] click_purchase attempt 1
+[2026-03-27T08:27:49.350Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:27:54.400Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:27:54.400Z] [runner] price_info {"price_text":"商品总额 ￥4399.00","price_value":"4399.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:27:54.829Z] [runner] goto https://item.jd.com/100135194629.html
+[2026-03-27T08:27:55.282Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:28:11.723Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:28:26.914Z] [runner] check_login
+[2026-03-27T08:28:26.922Z] [runner] check_risk
+[2026-03-27T08:28:26.982Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:28:27.013Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:28:27.013Z] [runner] click_purchase attempt 1
+[2026-03-27T08:28:27.063Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:28:34.629Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:28:34.630Z] [runner] price_info {"price_text":"商品总额 ￥4699.00","price_value":"4699.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:28:35.049Z] [runner] goto https://item.jd.com/100166481903.html
+[2026-03-27T08:28:35.614Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:28:53.215Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:29:08.545Z] [runner] check_login
+[2026-03-27T08:29:08.550Z] [runner] check_risk
+[2026-03-27T08:29:08.601Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:29:08.631Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:29:08.631Z] [runner] click_purchase attempt 1
+[2026-03-27T08:29:08.692Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:29:15.406Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:29:15.406Z] [runner] price_info {"price_text":"商品总额 ￥4399.00","price_value":"4399.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:29:15.797Z] [runner] goto https://item.jd.com/100179560354.html
+[2026-03-27T08:29:16.218Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:29:27.289Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:29:42.622Z] [runner] check_login
+[2026-03-27T08:29:42.627Z] [runner] check_risk
+[2026-03-27T08:29:42.687Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:29:42.718Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:29:42.719Z] [runner] click_purchase attempt 1
+[2026-03-27T08:29:42.770Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:29:50.346Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:29:50.346Z] [runner] price_info {"price_text":"商品总额 ￥6298.00","price_value":"6298.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:31:07.069Z] [runner] goto https://item.jd.com/100179560336.html
+[2026-03-27T08:31:07.510Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:31:20.075Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:31:35.262Z] [runner] check_login
+[2026-03-27T08:31:35.268Z] [runner] check_risk
+[2026-03-27T08:31:35.342Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:31:35.374Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:31:35.375Z] [runner] click_purchase attempt 1
+[2026-03-27T08:31:35.424Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:31:42.665Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:31:42.665Z] [runner] price_info {"price_text":"商品总额 ￥6398.00","price_value":"6398.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:31:41.596Z] [runner] goto https://item.jd.com/100229437274.html
+[2026-03-27T08:31:42.115Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:31:54.244Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:32:09.436Z] [runner] check_login
+[2026-03-27T08:32:09.441Z] [runner] check_risk
+[2026-03-27T08:32:09.495Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:32:10.038Z] [runner] goto https://item.jd.com/100071356599.html
+[2026-03-27T08:32:10.546Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:32:19.159Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:32:34.356Z] [runner] check_login
+[2026-03-27T08:32:34.360Z] [runner] check_risk
+[2026-03-27T08:32:34.415Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:32:34.976Z] [runner] goto https://item.jd.com/100078277728.html
+[2026-03-27T08:32:35.465Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:32:49.075Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:33:04.267Z] [runner] check_login
+[2026-03-27T08:33:04.272Z] [runner] check_risk
+[2026-03-27T08:33:04.334Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:33:04.928Z] [runner] goto https://item.jd.com/100229437304.html
+[2026-03-27T08:33:05.462Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:33:18.194Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:33:33.379Z] [runner] check_login
+[2026-03-27T08:33:33.383Z] [runner] check_risk
+[2026-03-27T08:33:33.444Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:35:12.165Z] [runner] goto https://item.jd.com/100229437302.html
+[2026-03-27T08:35:12.812Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:35:21.742Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:35:36.934Z] [runner] check_login
+[2026-03-27T08:35:36.940Z] [runner] check_risk
+[2026-03-27T08:35:36.996Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:35:37.503Z] [runner] goto https://item.jd.com/100110556636.html
+[2026-03-27T08:35:37.880Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:35:49.338Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:36:04.633Z] [runner] check_login
+[2026-03-27T08:36:04.637Z] [runner] check_risk
+[2026-03-27T08:36:04.691Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:36:05.211Z] [runner] goto https://item.jd.com/100110556632.html
+[2026-03-27T08:36:05.678Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:36:20.308Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:36:35.592Z] [runner] check_login
+[2026-03-27T08:36:35.596Z] [runner] check_risk
+[2026-03-27T08:36:35.655Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:36:36.233Z] [runner] goto https://item.jd.com/100229437226.html
+[2026-03-27T08:36:36.780Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:36:54.590Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:37:09.773Z] [runner] check_login
+[2026-03-27T08:37:09.777Z] [runner] check_risk
+[2026-03-27T08:37:09.833Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:37:09.863Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:37:09.864Z] [runner] click_purchase attempt 1
+[2026-03-27T08:37:09.916Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:37:15.769Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:37:15.769Z] [runner] price_info {"price_text":"商品总额 ￥7599.00","price_value":"7599.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:37:16.138Z] [runner] goto https://item.jd.com/10150165831173.html
+[2026-03-27T08:37:16.615Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:37:33.710Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:37:48.893Z] [runner] check_login
+[2026-03-27T08:37:48.896Z] [runner] check_risk
+[2026-03-27T08:37:48.957Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:37:48.990Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:37:48.990Z] [runner] click_purchase attempt 1
+[2026-03-27T08:37:49.052Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:37:54.774Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:37:54.775Z] [runner] price_info {"price_text":"商品总额 ￥4499.00","price_value":"4499.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:39:12.208Z] [runner] goto https://item.jd.com/10150140838886.html
+[2026-03-27T08:39:12.668Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:39:29.452Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:39:44.753Z] [runner] check_login
+[2026-03-27T08:39:44.757Z] [runner] check_risk
+[2026-03-27T08:39:44.819Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:39:45.366Z] [runner] goto https://item.jd.com/100160186639.html
+[2026-03-27T08:39:45.751Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:40:03.697Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:40:18.899Z] [runner] check_login
+[2026-03-27T08:40:18.905Z] [runner] check_risk
+[2026-03-27T08:40:18.976Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:40:19.007Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:40:19.007Z] [runner] click_purchase attempt 1
+[2026-03-27T08:40:19.070Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:40:23.521Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:40:23.521Z] [runner] price_info {"price_text":"商品总额 ￥3999.00","price_value":"3999.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:40:23.926Z] [runner] goto https://item.jd.com/100285598552.html
+[2026-03-27T08:40:24.371Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:40:33.219Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:40:48.413Z] [runner] check_login
+[2026-03-27T08:40:48.418Z] [runner] check_risk
+[2026-03-27T08:40:48.467Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:40:48.494Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:40:48.495Z] [runner] click_purchase attempt 1
+[2026-03-27T08:40:48.542Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:40:54.857Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:40:54.857Z] [runner] price_info {"price_text":"商品总额 ￥4999.00","price_value":"4999.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:40:55.267Z] [runner] goto https://item.jd.com/100285598566.html
+[2026-03-27T08:40:55.693Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:41:07.514Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:41:22.708Z] [runner] check_login
+[2026-03-27T08:41:22.713Z] [runner] check_risk
+[2026-03-27T08:41:22.763Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:41:22.796Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:41:22.796Z] [runner] click_purchase attempt 1
+[2026-03-27T08:41:22.852Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:41:30.418Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:41:30.418Z] [runner] price_info {"price_text":"商品总额 ￥4999.00","price_value":"4999.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:41:30.942Z] [runner] goto https://item.jd.com/100129564563.html
+[2026-03-27T08:41:31.456Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:41:44.023Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:41:59.212Z] [runner] check_login
+[2026-03-27T08:41:59.218Z] [runner] check_risk
+[2026-03-27T08:41:59.274Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:43:25.343Z] [runner] goto https://item.jd.com/100149749549.html
+[2026-03-27T08:43:26.003Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:43:43.541Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:43:58.741Z] [runner] check_login
+[2026-03-27T08:43:58.746Z] [runner] check_risk
+[2026-03-27T08:43:58.816Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:43:58.847Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:43:58.847Z] [runner] click_purchase attempt 1
+[2026-03-27T08:43:58.902Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:44:05.735Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:44:05.736Z] [runner] price_info {"price_text":"商品总额 ￥6499.00","price_value":"6499.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:44:06.164Z] [runner] goto https://item.jd.com/100200325980.html
+[2026-03-27T08:44:06.720Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:44:16.427Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:44:31.625Z] [runner] check_login
+[2026-03-27T08:44:31.630Z] [runner] check_risk
+[2026-03-27T08:44:31.699Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:44:31.730Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:44:31.730Z] [runner] click_purchase attempt 1
+[2026-03-27T08:44:31.786Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:44:37.300Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:44:37.300Z] [runner] price_info {"price_text":"商品总额 ￥13499.00","price_value":"13499.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:44:37.703Z] [runner] goto https://item.jd.com/100173612431.html
+[2026-03-27T08:44:38.020Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:44:54.830Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:45:10.008Z] [runner] check_login
+[2026-03-27T08:45:10.013Z] [runner] check_risk
+[2026-03-27T08:45:10.071Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:45:10.105Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:45:10.105Z] [runner] click_purchase attempt 1
+[2026-03-27T08:45:10.163Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:45:14.191Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:45:14.191Z] [runner] price_info {"price_text":"商品总额 ￥7399.00","price_value":"7399.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:45:14.586Z] [runner] goto https://item.jd.com/100200325940.html
+[2026-03-27T08:45:15.024Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:45:28.087Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:45:43.337Z] [runner] check_login
+[2026-03-27T08:45:43.341Z] [runner] check_risk
+[2026-03-27T08:45:43.399Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:45:43.990Z] [runner] goto https://item.jd.com/100193450599.html
+[2026-03-27T08:45:44.524Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:45:57.946Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:46:13.233Z] [runner] check_login
+[2026-03-27T08:46:13.238Z] [runner] check_risk
+[2026-03-27T08:46:13.292Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:46:13.328Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:46:13.328Z] [runner] click_purchase attempt 1
+[2026-03-27T08:46:13.379Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:46:20.917Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:46:20.917Z] [runner] price_info {"price_text":"商品总额 ￥8299.00","price_value":"8299.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:48:02.666Z] [runner] goto https://item.jd.com/100213780006.html
+[2026-03-27T08:48:03.189Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:48:16.124Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:48:31.392Z] [runner] check_login
+[2026-03-27T08:48:31.397Z] [runner] check_risk
+[2026-03-27T08:48:31.458Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:48:32.060Z] [runner] goto https://item.jd.com/100231000048.html
+[2026-03-27T08:48:32.365Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:48:49.478Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:49:04.682Z] [runner] check_login
+[2026-03-27T08:49:04.689Z] [runner] check_risk
+[2026-03-27T08:49:04.750Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:49:04.783Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:49:04.784Z] [runner] click_purchase attempt 1
+[2026-03-27T08:49:04.841Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:49:11.104Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:49:11.104Z] [runner] price_info {"price_text":"商品总额 ￥5399.00","price_value":"5399.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:49:11.524Z] [runner] goto https://item.jd.com/100282626606.html
+[2026-03-27T08:49:12.036Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:49:20.797Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:49:35.995Z] [runner] check_login
+[2026-03-27T08:49:35.999Z] [runner] check_risk
+[2026-03-27T08:49:36.091Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:49:36.127Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:49:36.127Z] [runner] click_purchase attempt 1
+[2026-03-27T08:49:36.179Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:49:44.599Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:49:44.600Z] [runner] price_info {"price_text":"商品总额 ￥3798.00","price_value":"3798.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:54:17.914Z] [runner] verbose logging enabled
+[2026-03-27T08:54:18.112Z] [runner] goto https://item.jd.com/100226110114.html
+[2026-03-27T08:54:18.738Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:54:32.495Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:54:47.756Z] [runner] check_login
+[2026-03-27T08:54:47.761Z] [runner] check_risk
+[2026-03-27T08:54:47.807Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:54:47.845Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:54:47.845Z] [runner] click_purchase attempt 1
+[2026-03-27T08:54:47.897Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:54:52.864Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:54:52.865Z] [runner] price_info {"price_text":"商品总额 ￥12199.00","price_value":"12199.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:54:53.303Z] [runner] goto https://item.jd.com/100226110132.html
+[2026-03-27T08:54:53.740Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:55:04.987Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:55:20.363Z] [runner] check_login
+[2026-03-27T08:55:20.369Z] [runner] check_risk
+[2026-03-27T08:55:20.448Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:55:20.483Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:55:20.483Z] [runner] click_purchase attempt 1
+[2026-03-27T08:55:20.545Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:55:25.556Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:55:25.556Z] [runner] price_info {"price_text":"商品总额 ￥13099.00","price_value":"13099.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:55:25.992Z] [runner] goto https://item.jd.com/100218146966.html
+[2026-03-27T08:55:26.738Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:55:45.640Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:56:00.920Z] [runner] check_login
+[2026-03-27T08:56:00.925Z] [runner] check_risk
+[2026-03-27T08:56:00.986Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:56:01.019Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:56:01.019Z] [runner] click_purchase attempt 1
+[2026-03-27T08:56:01.076Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:56:06.141Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:56:06.141Z] [runner] price_info {"price_text":"商品总额 ￥15499.00","price_value":"15499.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:56:06.591Z] [runner] goto https://item.jd.com/100169205655.html
+[2026-03-27T08:56:07.117Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:56:20.283Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:56:35.520Z] [runner] check_login
+[2026-03-27T08:56:35.525Z] [runner] check_risk
+[2026-03-27T08:56:35.587Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:56:35.618Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:56:35.618Z] [runner] click_purchase attempt 1
+[2026-03-27T08:56:35.686Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:56:40.223Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:56:40.223Z] [runner] price_info {"price_text":"商品总额 ￥17499.00","price_value":"17499.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T08:56:40.638Z] [runner] goto https://item.jd.com/100186215392.html
+[2026-03-27T08:56:41.108Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T08:56:56.212Z] [runner] wait_purchase_area_ready
+[2026-03-27T08:57:11.411Z] [runner] check_login
+[2026-03-27T08:57:11.416Z] [runner] check_risk
+[2026-03-27T08:57:11.482Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T08:57:11.517Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T08:57:11.517Z] [runner] click_purchase attempt 1
+[2026-03-27T08:57:11.566Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T08:59:14.884Z] [runner] retry_click_purchase attempt 1
+[2026-03-27T08:59:20.085Z] [runner] post_purchase_kind checkout
+[2026-03-27T08:59:20.085Z] [runner] price_info {"price_text":"商品总额 ￥7299.00","price_value":"7299.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:00:22.509Z] [runner] goto https://item.jd.com/100185894090.html
+[2026-03-27T09:00:23.077Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:00:32.654Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:00:47.871Z] [runner] check_login
+[2026-03-27T09:00:47.877Z] [runner] check_risk
+[2026-03-27T09:00:47.995Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:00:48.049Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:00:48.050Z] [runner] click_purchase attempt 1
+[2026-03-27T09:00:48.106Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:00:54.937Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:00:54.938Z] [runner] price_info {"price_text":"商品总额 ￥7499.00","price_value":"7499.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:00:55.370Z] [runner] goto https://item.jd.com/100109152429.html
+[2026-03-27T09:00:55.835Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:01:05.638Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:01:20.847Z] [runner] check_login
+[2026-03-27T09:01:20.852Z] [runner] check_risk
+[2026-03-27T09:01:20.919Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:01:21.539Z] [runner] goto https://item.jd.com/100157971225.html
+[2026-03-27T09:01:22.083Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:01:37.673Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:01:52.880Z] [runner] check_login
+[2026-03-27T09:01:52.886Z] [runner] check_risk
+[2026-03-27T09:01:52.958Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:01:52.994Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:01:52.994Z] [runner] click_purchase attempt 1
+[2026-03-27T09:01:53.054Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:02:00.441Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:02:00.441Z] [runner] price_info {"price_text":"商品总额 ￥6799.00","price_value":"6799.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:02:00.857Z] [runner] goto https://item.jd.com/100241441971.html
+[2026-03-27T09:02:01.289Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:02:11.787Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:02:26.991Z] [runner] check_login
+[2026-03-27T09:02:26.996Z] [runner] check_risk
+[2026-03-27T09:02:27.052Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:02:27.079Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:02:27.079Z] [runner] click_purchase attempt 1
+[2026-03-27T09:02:27.132Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:02:31.959Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:02:31.959Z] [runner] price_info {"price_text":"商品总额 ￥6299.00","price_value":"6299.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:02:32.386Z] [runner] goto https://item.jd.com/10136774271878.html
+[2026-03-27T09:02:32.712Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:02:44.349Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:02:59.555Z] [runner] check_login
+[2026-03-27T09:02:59.560Z] [runner] check_risk
+[2026-03-27T09:02:59.609Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:05:38.116Z] [runner] verbose logging enabled
+[2026-03-27T09:05:38.318Z] [runner] goto https://item.jd.com/100226664586.html
+[2026-03-27T09:05:38.990Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:05:51.172Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:06:06.425Z] [runner] check_login
+[2026-03-27T09:06:06.431Z] [runner] check_risk
+[2026-03-27T09:06:06.484Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:06:06.519Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:06:06.520Z] [runner] click_purchase attempt 1
+[2026-03-27T09:06:06.564Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:06:13.109Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:06:13.109Z] [runner] price_info {"price_text":"商品总额 ￥14999.00","price_value":"14999.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:06:13.590Z] [runner] goto https://item.jd.com/100218146944.html
+[2026-03-27T09:06:14.051Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:06:28.322Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:06:43.534Z] [runner] check_login
+[2026-03-27T09:06:43.539Z] [runner] check_risk
+[2026-03-27T09:06:43.605Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:06:43.651Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:06:43.651Z] [runner] click_purchase attempt 1
+[2026-03-27T09:06:43.718Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:06:49.312Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:06:49.312Z] [runner] price_info {"price_text":"商品总额 ￥16199.00","price_value":"16199.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:06:49.743Z] [runner] goto https://item.jd.com/100218146948.html
+[2026-03-27T09:06:50.233Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:07:00.551Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:07:15.743Z] [runner] check_login
+[2026-03-27T09:07:15.747Z] [runner] check_risk
+[2026-03-27T09:07:15.807Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:07:16.406Z] [runner] goto https://item.jd.com/100205183444.html
+[2026-03-27T09:07:16.878Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:07:31.599Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:07:46.784Z] [runner] check_login
+[2026-03-27T09:07:46.790Z] [runner] check_risk
+[2026-03-27T09:07:46.854Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:07:47.430Z] [runner] goto https://item.jd.com/100226110098.html
+[2026-03-27T09:07:47.786Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:08:04.256Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:08:19.479Z] [runner] check_login
+[2026-03-27T09:08:19.484Z] [runner] check_risk
+[2026-03-27T09:08:19.544Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:08:19.574Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:08:19.575Z] [runner] click_purchase attempt 1
+[2026-03-27T09:08:19.619Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:08:27.240Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:08:27.241Z] [runner] price_info {"price_text":"商品总额 ￥10799.00","price_value":"10799.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:22:09.635Z] [runner] verbose logging enabled
+[2026-03-27T09:22:17.034Z] [runner] goto https://item.jd.com/100226110114.html
+[2026-03-27T09:22:17.810Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:22:34.067Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:22:49.459Z] [runner] check_login
+[2026-03-27T09:22:49.465Z] [runner] check_risk
+[2026-03-27T09:22:49.532Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:22:49.571Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:22:49.571Z] [runner] click_purchase attempt 1
+[2026-03-27T09:22:49.630Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:22:57.610Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:22:57.610Z] [runner] price_info {"price_text":"商品总额 ￥12199.00","price_value":"12199.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:22:58.219Z] [runner] goto https://item.jd.com/100226110132.html
+[2026-03-27T09:22:58.557Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:23:09.166Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:23:24.349Z] [runner] check_login
+[2026-03-27T09:23:24.353Z] [runner] check_risk
+[2026-03-27T09:23:24.411Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:23:24.439Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:23:24.439Z] [runner] click_purchase attempt 1
+[2026-03-27T09:23:24.477Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:23:30.606Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:23:30.606Z] [runner] price_info {"price_text":"商品总额 ￥13099.00","price_value":"13099.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:23:31.013Z] [runner] goto https://item.jd.com/100218146966.html
+[2026-03-27T09:23:31.337Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:23:49.183Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:24:04.565Z] [runner] check_login
+[2026-03-27T09:24:04.572Z] [runner] check_risk
+[2026-03-27T09:24:04.656Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:24:04.693Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:24:04.693Z] [runner] click_purchase attempt 1
+[2026-03-27T09:24:04.744Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:24:11.618Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:24:11.618Z] [runner] price_info {"price_text":"商品总额 ￥15499.00","price_value":"15499.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:24:12.064Z] [runner] goto https://item.jd.com/100169205655.html
+[2026-03-27T09:24:12.705Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:24:25.076Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:24:40.283Z] [runner] check_login
+[2026-03-27T09:24:40.287Z] [runner] check_risk
+[2026-03-27T09:24:40.358Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:24:40.392Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:24:40.392Z] [runner] click_purchase attempt 1
+[2026-03-27T09:24:40.436Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:24:46.902Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:24:46.902Z] [runner] price_info {"price_text":"商品总额 ￥17499.00","price_value":"17499.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:24:47.287Z] [runner] goto https://item.jd.com/100186215392.html
+[2026-03-27T09:24:47.773Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:25:00.459Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:25:15.664Z] [runner] check_login
+[2026-03-27T09:25:15.668Z] [runner] check_risk
+[2026-03-27T09:25:15.727Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:25:15.759Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:25:15.759Z] [runner] click_purchase attempt 1
+[2026-03-27T09:25:15.816Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:25:22.140Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:25:22.140Z] [runner] price_info {"price_text":"商品总额 ￥7299.00","price_value":"7299.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:27:17.255Z] [runner] goto https://item.jd.com/100185894090.html
+[2026-03-27T09:27:17.899Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:27:29.184Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:27:44.425Z] [runner] check_login
+[2026-03-27T09:27:44.429Z] [runner] check_risk
+[2026-03-27T09:27:44.509Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:27:44.546Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:27:44.546Z] [runner] click_purchase attempt 1
+[2026-03-27T09:27:44.610Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:27:49.353Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:27:49.353Z] [runner] price_info {"price_text":"商品总额 ￥7499.00","price_value":"7499.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:27:49.717Z] [runner] goto https://item.jd.com/100109152429.html
+[2026-03-27T09:27:50.069Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:28:06.035Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:28:21.226Z] [runner] check_login
+[2026-03-27T09:28:21.231Z] [runner] check_risk
+[2026-03-27T09:28:21.308Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:28:21.898Z] [runner] goto https://item.jd.com/100157971225.html
+[2026-03-27T09:28:22.491Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:28:36.810Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:28:52.007Z] [runner] check_login
+[2026-03-27T09:28:52.011Z] [runner] check_risk
+[2026-03-27T09:28:52.073Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:28:52.101Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:28:52.101Z] [runner] click_purchase attempt 1
+[2026-03-27T09:28:52.145Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:28:57.417Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:28:57.417Z] [runner] price_info {"price_text":"商品总额 ￥6799.00","price_value":"6799.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:28:57.838Z] [runner] goto https://item.jd.com/100241441971.html
+[2026-03-27T09:28:58.451Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:29:08.150Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:29:23.336Z] [runner] check_login
+[2026-03-27T09:29:23.341Z] [runner] check_risk
+[2026-03-27T09:29:23.392Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:29:23.419Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:29:23.419Z] [runner] click_purchase attempt 1
+[2026-03-27T09:29:23.457Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:29:28.929Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:29:28.929Z] [runner] price_info {"price_text":"商品总额 ￥6299.00","price_value":"6299.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:29:29.333Z] [runner] goto https://item.jd.com/10136774271878.html
+[2026-03-27T09:29:29.826Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:29:48.190Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:30:03.370Z] [runner] check_login
+[2026-03-27T09:30:03.375Z] [runner] check_risk
+[2026-03-27T09:30:03.430Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:54:53.603Z] [runner] verbose logging enabled
+[2026-03-27T09:55:02.016Z] [runner] goto https://item.jd.com/100165631515.html
+[2026-03-27T09:55:02.765Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:55:19.865Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:55:35.321Z] [runner] check_login
+[2026-03-27T09:55:35.326Z] [runner] check_risk
+[2026-03-27T09:55:35.416Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:55:35.463Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:55:35.463Z] [runner] click_purchase attempt 1
+[2026-03-27T09:55:35.520Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:55:42.417Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:55:42.417Z] [runner] price_info {"price_text":"商品总额 ￥10299.00","price_value":"10299.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:55:42.855Z] [runner] goto https://item.jd.com/100222021190.html
+[2026-03-27T09:55:43.350Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:55:59.921Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:56:15.134Z] [runner] check_login
+[2026-03-27T09:56:15.138Z] [runner] check_risk
+[2026-03-27T09:56:15.198Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:56:15.229Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:56:15.229Z] [runner] click_purchase attempt 1
+[2026-03-27T09:56:15.276Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:56:19.682Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:56:19.682Z] [runner] price_info {"price_text":"商品总额 ￥9699.00","price_value":"9699.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:56:20.096Z] [runner] goto https://item.jd.com/100222021222.html
+[2026-03-27T09:56:20.379Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:56:36.380Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:56:51.591Z] [runner] check_login
+[2026-03-27T09:56:51.595Z] [runner] check_risk
+[2026-03-27T09:56:51.672Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:56:51.702Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:56:51.702Z] [runner] click_purchase attempt 1
+[2026-03-27T09:56:51.757Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:56:56.805Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:56:56.805Z] [runner] price_info {"price_text":"商品总额 ￥10299.00","price_value":"10299.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:56:57.283Z] [runner] goto https://item.jd.com/100212784820.html
+[2026-03-27T09:56:57.826Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:57:12.976Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:57:28.146Z] [runner] check_login
+[2026-03-27T09:57:28.150Z] [runner] check_risk
+[2026-03-27T09:57:28.208Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:57:28.242Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:57:28.242Z] [runner] click_purchase attempt 1
+[2026-03-27T09:57:28.294Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T09:57:34.625Z] [runner] post_purchase_kind checkout
+[2026-03-27T09:57:34.625Z] [runner] price_info {"price_text":"商品总额 ￥12999.00","price_value":"12999.00","currency":"CNY","checkout_signal":"商品总额"} isCheckout= true
+[2026-03-27T09:57:35.078Z] [runner] goto https://item.jd.com/100172948815.html
+[2026-03-27T09:57:35.527Z] [runner] page_state {"visibilityState":"visible","innerWidth":1444,"innerHeight":1142,"scrollY":0}
+[2026-03-27T09:57:54.390Z] [runner] wait_purchase_area_ready
+[2026-03-27T09:58:09.561Z] [runner] check_login
+[2026-03-27T09:58:09.565Z] [runner] check_risk
+[2026-03-27T09:58:09.622Z] [runner] find_purchase_entry attempt 1
+[2026-03-27T09:58:09.652Z] [runner] purchase_found 立即购买  attempt 1
+[2026-03-27T09:58:09.652Z] [runner] click_purchase attempt 1
+[2026-03-27T09:58:09.702Z] [runner] wait_purchase_flow attempt 1
+[2026-03-27T10:00:07.574Z] [runner] retry_click_purchase attempt 1
+[2026-03-27T10:01:58.306Z] [runner] checkout_blocked_retry_wait 1800000 attempt 2
+[2026-03-27T10:31:15.255Z] [runner] checkout_blocked_retry_reload https://item.jd.com/100172948815.html attempt 2
+[2026-03-27T10:31:44.179Z] [runner] find_purchase_entry attempt 2
+[2026-03-27T10:33:16.622Z] [runner] goto https://item.jd.com/100212784844.html
+[2026-03-27T10:33:16.633Z] [runner] goto https://item.jd.com/100172948833.html
+[2026-03-27T10:33:16.634Z] [runner] goto https://item.jd.com/100165631499.html
+[2026-03-27T10:33:16.634Z] [runner] goto https://item.jd.com/100166879203.html
+[2026-03-27T10:33:16.635Z] [runner] goto https://item.jd.com/100155004255.html

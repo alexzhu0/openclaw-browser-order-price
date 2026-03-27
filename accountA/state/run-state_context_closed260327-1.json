@@ -1,0 +1,55 @@
+{
+  "status": "completed",
+  "started_at": "2026-03-27T10:43:45.287Z",
+  "updated_at": "2026-03-27T10:47:14.858Z",
+  "processed": 6,
+  "success": 6,
+  "failed": 0,
+  "last_index": 5,
+  "last_url": "https://item.jd.com/100155004255.html",
+  "blocked_reason": "",
+  "results": [
+    {
+      "index": 0,
+      "url": "https://item.jd.com/100172948815.html",
+      "status": "success",
+      "error": "",
+      "price": "¥8999.00"
+    },
+    {
+      "index": 1,
+      "url": "https://item.jd.com/100212784844.html",
+      "status": "success",
+      "error": "",
+      "price": "¥9799.00"
+    },
+    {
+      "index": 2,
+      "url": "https://item.jd.com/100172948833.html",
+      "status": "success",
+      "error": "",
+      "price": "¥9699.00"
+    },
+    {
+      "index": 3,
+      "url": "https://item.jd.com/100165631499.html",
+      "status": "success",
+      "error": "",
+      "price": "¥10999.00"
+    },
+    {
+      "index": 4,
+      "url": "https://item.jd.com/100166879203.html",
+      "status": "success",
+      "error": "",
+      "price": "¥11999.00"
+    },
+    {
+      "index": 5,
+      "url": "https://item.jd.com/100155004255.html",
+      "status": "success",
+      "error": "",
+      "price": "¥5999.00"
+    }
+  ]
+}

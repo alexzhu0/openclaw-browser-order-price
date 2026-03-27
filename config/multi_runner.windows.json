@@ -1,0 +1,67 @@
+{
+  "windows": {
+    "chromePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    "_chromePath_comment": "Windows 原生运行时使用的 Chrome 路径。",
+    "bootstrapUrl": "https://www.jd.com/",
+    "_bootstrapUrl_comment": "启动每个账号窗口时默认打开的页面。首次使用时可在这里登录。"
+  },
+  "baseConfigPath": "config/runner.windows.json",
+  "inputOffset": 0,
+  "inputLimit": 0,
+
+  "mergedOutputFile": "data/multi_account_output.windows.json",
+  "mergedXlsxFile": "data/multi_account_output.windows.xlsx",
+  "finalMergedOutputFile": "data/final_output.windows.json",
+  "finalMergedXlsxFile": "data/final_output.windows.xlsx",
+  "pendingRerunFile": "data/pending_rerun_tasks.windows.json",
+  "pendingRerunXlsxFile": "data/pending_rerun_tasks.windows.xlsx",
+  "pendingRerunStatuses": [
+    "relogin_required",
+    "checkout_blocked"
+  ],
+
+  "workers": [
+    {
+      "name": "accountA",
+      "enabled": true,
+      "generatedConfigPath": "accountA/state/generated-config.windows.json",
+      "windows": {
+        "profileDir": "state/chrome-profile-a"
+      },
+      "cdp": {
+        "host": "127.0.0.1",
+        "port": 9222
+      },
+      "input": {
+        "outputFile": "accountA/data/output.windows.json"
+      },
+      "output": {
+        "stateFile": "accountA/state/run-state.windows.json"
+      },
+      "interaction": {
+        "logFile": "accountA/logs/runner.windows.log"
+      }
+    },
+    {
+      "name": "accountB",
+      "enabled": false,
+      "generatedConfigPath": "accountB/state/generated-config.windows.json",
+      "windows": {
+        "profileDir": "state/chrome-profile-b"
+      },
+      "cdp": {
+        "host": "127.0.0.1",
+        "port": 9224
+      },
+      "input": {
+        "outputFile": "accountB/data/output.windows.json"
+      },
+      "output": {
+        "stateFile": "accountB/state/run-state.windows.json"
+      },
+      "interaction": {
+        "logFile": "accountB/logs/runner.windows.log"
+      }
+    }
+  ]
+}

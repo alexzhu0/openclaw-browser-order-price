@@ -191,12 +191,13 @@ function defaultWorkerPaths(name) {
   };
 }
 
-function buildWorkerConfig(baseConfig, worker, slice) {
+function buildWorkerConfig(baseConfig, worker, slice, inputFileOverride = "") {
   const name = worker.name;
   const defaults = defaultWorkerPaths(name);
   const merged = deepMerge(baseConfig, worker);
   merged.input = {
     ...(merged.input ?? {}),
+    jsonFile: inputFileOverride || worker.input?.jsonFile || merged.input?.jsonFile,
     offset: slice.offset,
     limit: slice.limit,
     outputFile: worker.input?.outputFile ?? merged.input?.outputFile ?? defaults.outputFile,
@@ -264,7 +265,13 @@ function mergeWorkerOutputs(rawPayload, envelopeType, workerPlans) {
 function pickPendingTasks(tasks, statuses) {
   const wanted = new Set((statuses || []).map((item) => String(item).trim()).filter(Boolean));
   return tasks
-    .map((task, index) => ({ ...task, _rerun_source_index: index }))
+    .map((task, index) => {
+      const existingIndex = Number(task?._rerun_source_index);
+      return {
+        ...task,
+        _rerun_source_index: Number.isInteger(existingIndex) && existingIndex >= 0 ? existingIndex : index,
+      };
+    })
     .filter((task) => {
       const status = String(task?.run_status || "").trim();
       return !status || wanted.has(status);
@@ -277,11 +284,14 @@ function mergeIntoFinalPayload(basePayload, rerunTasks) {
   for (const task of rerunTasks) {
     const originalIndex = Number(task?._rerun_source_index);
     const cleanTask = stripHelperFields(task);
-    if (Number.isInteger(originalIndex) && originalIndex >= 0 && originalIndex < merged.length) {
-      merged[originalIndex] = cleanTask;
-      continue;
-    }
     const url = String(cleanTask?.URL ?? cleanTask?.url ?? "").trim();
+    if (Number.isInteger(originalIndex) && originalIndex >= 0 && originalIndex < merged.length) {
+      const indexedUrl = String(merged[originalIndex]?.URL ?? merged[originalIndex]?.url ?? "").trim();
+      if (!url || !indexedUrl || indexedUrl === url) {
+        merged[originalIndex] = cleanTask;
+        continue;
+      }
+    }
     if (!url) continue;
     const foundIndex = merged.findIndex((item) => String(item?.URL ?? item?.url ?? "").trim() === url);
     if (foundIndex >= 0) merged[foundIndex] = cleanTask;
@@ -309,13 +319,14 @@ async function main() {
   const slices = buildSlices(tasks.length, enabledWorkers.length, multiOffset, multiLimit);
   const workerPlans = enabledWorkers.map((worker, index) => {
     const slice = slices[index];
-    const workerConfig = buildWorkerConfig(baseConfig, worker, slice);
+    const workerConfig = buildWorkerConfig(baseConfig, worker, slice, inputFile);
     const configPath = path.resolve(PROJECT_DIR, worker.generatedConfigPath || path.join(worker.name, "state", "generated-config.json"));
     return {
       name: worker.name,
       configPath,
       offset: slice.offset,
       limit: slice.limit,
+      inputFile: workerConfig.input.jsonFile,
       outputFile: workerConfig.input.outputFile,
       stateFile: workerConfig.output.stateFile,
       logFile: workerConfig.interaction.logFile,
@@ -331,6 +342,7 @@ async function main() {
       name: worker.name,
       offset: worker.offset,
       limit: worker.limit,
+      inputFile: worker.inputFile,
       outputFile: worker.outputFile,
       stateFile: worker.stateFile,
       logFile: worker.logFile,

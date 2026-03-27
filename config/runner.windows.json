@@ -1,0 +1,57 @@
+{
+  "windows": {
+    "chromePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    "_chromePath_comment": "Windows 原生运行时使用的 Chrome 路径。",
+    "profileDir": "state/chrome-profile-a",
+    "_profileDir_comment": "单账号模式默认使用的 Chrome 用户目录。",
+    "bootstrapUrl": "https://www.jd.com/",
+    "_bootstrapUrl_comment": "启动 Chrome 后默认打开的页面。首次使用时可在这里登录。"
+  },
+
+  "cdp": {
+    "host": "127.0.0.1",
+    "_host_comment": "Windows 原生模式直接连本机 Chrome，无需 WSL 地址。",
+    "port": 9222,
+    "_port_comment": "Chrome 原生 remote-debugging 端口。"
+  },
+
+  "input": {
+    "jsonFile": "data/test.json",
+    "outputFile": "data/testoutput.windows.json",
+    "writeInPlace": false,
+    "limit": 0,
+    "offset": 0,
+    "shuffle": false,
+    "batchSize": 0
+  },
+
+  "behavior": {
+    "pauseEvery": 5,
+    "pauseMinMs": 60000,
+    "pauseMaxMs": 120000,
+    "minOpenMs": 10000,
+    "maxOpenMs": 20000,
+    "minClickMs": 4000,
+    "maxClickMs": 8000,
+    "waitAfterOpenMs": 5000,
+    "waitAfterClickMs": 5000
+  },
+
+  "retry": {
+    "checkoutBlockedRetries": 3,
+    "checkoutBlockedIntervalMs": 1800000
+  },
+
+  "interaction": {
+    "interactiveLogin": true,
+    "interactiveRisk": true,
+    "verbose": true,
+    "logFile": "state/logs/runner.windows.log",
+    "debugDump": false,
+    "debugDumpDir": "state/debug"
+  },
+
+  "output": {
+    "stateFile": "state/run-state.windows.json"
+  }
+}
